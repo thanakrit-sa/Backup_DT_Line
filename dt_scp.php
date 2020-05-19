@@ -66,7 +66,7 @@ foreach ($events['events'] as $event) {
             if ($bet_string == "ข้อมูล") {
                 $messages = [
                     'type' => 'text',
-                    'text' => $userID
+                    'text' => "UserID : ".$userID."\r\n"."GroupID : ".$groupID
                 ];
             } else {
                 if (!$bet_string) {
