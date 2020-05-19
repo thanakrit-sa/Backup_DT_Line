@@ -76,6 +76,12 @@ foreach ($events['events'] as $event) {
                     'type' => 'text',
                     'text' => $user_displayname . " ยอดเงินเดิมพันไม่ถูกต้อง"
                 ];
+            } else if ($bet_value == "info") {
+
+                $messages = [
+                    'type' => 'text',
+                    'text' => $userID
+                ];
             } else {
 
                 $messages = [
