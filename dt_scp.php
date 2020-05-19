@@ -66,14 +66,14 @@ foreach ($events['events'] as $event) {
             if ($bet_string == "ข้อมูล") {
                 $messages = [
                     'type' => 'text',
-                    'text' => $user_displayname . " รูปแบบ"
+                    'text' => $userID
                 ];
             } else {
                 if (!$bet_string) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $user_displayname . " รูปแบบการเดิมพันของท่านไม่ถูก"
+                        'text' => $user_displayname . " รูปแบบการเดิมพันของท่านไม่ถูกต้อง"
                     ];
                 } else if (!is_numeric($bet_value)) {
 
