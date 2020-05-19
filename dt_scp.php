@@ -76,7 +76,7 @@ foreach ($events['events'] as $event) {
                     'type' => 'text',
                     'text' => $user_displayname . " ยอดเงินเดิมพันไม่ถูกต้อง"
                 ];
-            } else if ($bet_string == "info") {
+            } else if ($bet_string == "ข้อมูล") {
 
                 $messages = [
                     'type' => 'text',
