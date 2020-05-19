@@ -62,7 +62,7 @@ function checkbetstring($text)
 {
 
     $text = preg_replace('/[0-9]+/', '', $text);
-    $bet_string = preg_replace("/[^ก-๙]/", "", $text);
+    $bet_string = preg_replace("/[^a-zก-๙]/", "", $text);
 
     // return $bet_string;
     if (substr_count($bet_string, 'x') > 0) {
