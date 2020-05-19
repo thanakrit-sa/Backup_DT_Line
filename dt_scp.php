@@ -101,7 +101,7 @@ foreach ($events['events'] as $event) {
                 $bet_string = checkbetstring($element);
                 $bet_value = checkbetvalue($element);
 
-
+                echo $bet_string;
                 if (!$bet_string) {
 
                     $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
@@ -148,7 +148,7 @@ foreach ($events['events'] as $event) {
     $result = curl_exec($ch);
     curl_close($ch);
 
-    echo $result . "\r\n";
+    // echo $result . "\r\n";
 }
 
-echo "OK";
+// echo "OK";
