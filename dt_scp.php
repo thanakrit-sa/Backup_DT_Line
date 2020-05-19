@@ -80,7 +80,7 @@ foreach ($events['events'] as $event) {
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $userID
+                    'text' => $user_displayname . " รูปแบบ"
                 ];
             } else {
 

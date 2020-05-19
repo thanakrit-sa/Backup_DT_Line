@@ -106,7 +106,7 @@ function checkbetstring($text)
         } else if ($bet_string == "มแดง") {
 
             $bet_string = "มังกรแดง";
-        } else if ($bet_string == "info") {
+        } else if ($bet_string == "ข้อมูล") {
 
             $bet_string = "ข้อมูล";
         } else {
