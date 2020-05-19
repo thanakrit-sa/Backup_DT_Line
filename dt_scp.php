@@ -63,31 +63,31 @@ foreach ($events['events'] as $event) {
             $bet_string = checkbetstring($text);
             $bet_value = checkbetvalue($text);
 
-
-            if (!$bet_string) {
-
-                $messages = [
-                    'type' => 'text',
-                    'text' => $user_displayname . " รูปแบบการเดิมพันของท่านไม่ถูก"
-                ];
-            } else if (!is_numeric($bet_value)) {
-
-                $messages = [
-                    'type' => 'text',
-                    'text' => $user_displayname . " ยอดเงินเดิมพันไม่ถูกต้อง"
-                ];
-            } else if ($bet_string == "ข้อมูล") {
-
+            if ($bet_string == "ข้อมูล") {
                 $messages = [
                     'type' => 'text',
                     'text' => $user_displayname . " รูปแบบ"
                 ];
             } else {
+                if (!$bet_string) {
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => $user_displayname . ' แทง ' . $bet_string . " จำนวน " . $bet_value
-                ];
+                    $messages = [
+                        'type' => 'text',
+                        'text' => $user_displayname . " รูปแบบการเดิมพันของท่านไม่ถูก"
+                    ];
+                } else if (!is_numeric($bet_value)) {
+
+                    $messages = [
+                        'type' => 'text',
+                        'text' => $user_displayname . " ยอดเงินเดิมพันไม่ถูกต้อง"
+                    ];
+                } else {
+
+                    $messages = [
+                        'type' => 'text',
+                        'text' => $user_displayname . ' แทง ' . $bet_string . " จำนวน " . $bet_value
+                    ];
+                }
             }
         } else if ($split_slash_count > 0) {
 
