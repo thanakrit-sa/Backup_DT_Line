@@ -18,6 +18,7 @@ $events = json_decode($content, true);
 foreach ($events['events'] as $event) {
 
     $userID = $event['source']['userId'];
+    $line_id = $event['source']['userId'];
     $groupID = $event['source']['groupId'];
 
 
@@ -80,19 +81,18 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "user_displayname" => "a",
-                    "fullname" => "a",
-                    "user_lineid" => "a",
-                    "phonenumber" => "0000000000"
+                    "user_displayname" => $user_displayname,
+                    "fullname" => $fullname,
+                    "user_lineid" => $line_id,
                 );
                 $data_string = json_encode($data);
 
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user');
 
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                curl_setopt($ch, CURLOPT_HTTPHEADER, 'Content-Type: application/json');
 
                 $result = curl_exec($ch);
                 curl_close($ch);
