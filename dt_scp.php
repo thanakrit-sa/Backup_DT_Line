@@ -125,7 +125,7 @@ foreach ($events['events'] as $event) {
                 
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $data
+                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $data[0]
                 ];
             } else {
                 if (!$bet_string) {
