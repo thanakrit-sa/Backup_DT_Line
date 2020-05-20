@@ -96,10 +96,11 @@ foreach ($events['events'] as $event) {
 
                 $result = curl_exec($ch);
                 curl_close($ch);
+                $dataresult = json_decode($result,true);
                 
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $result . "\r\n" . $data_string . "\r\n" . $userID
+                    'text' => "Username : " . $dataresult . "\r\n" . $data_string . "\r\n" . $userID
                 ];
             } else {
                 if (!$bet_string) {
