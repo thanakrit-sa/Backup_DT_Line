@@ -79,13 +79,13 @@ foreach ($events['events'] as $event) {
                     'text' => "Username : " . $user_displayname . "\r\n" . "ยกเลิกการเดิมพันทั้งหมด"
                 ];
             } else if ($bet_string == "สมัคร") {
-                $data = array(
+                $data = [
                     "user_displayname" => "a",
                     "fullname" => "a",
                     "user_lineid" => "a",
                     "phonenumber" => "0000000000",
                     "credit" => "0",
-                );
+                ];
                 $data_string = json_encode($data);
 
                 $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
