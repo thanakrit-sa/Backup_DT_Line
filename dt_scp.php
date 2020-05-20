@@ -100,7 +100,7 @@ foreach ($events['events'] as $event) {
                 
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $dataresult['status'] . "\r\n" . $data_string . "\r\n" . $userID
+                    'text' => "Username : " . $result . "\r\n" . $data_string . $dataresult
                 ];
             } else {
                 if (!$bet_string) {
