@@ -83,9 +83,9 @@ foreach ($events['events'] as $event) {
                     "user_displayname" => "$userID",
                     "fullname" => "$userID",
                     "user_lineid" => "$userID",
+                    "tel" => "tel"
                 );
                 $data_string = json_encode($data);
-                echo $data_string;
 
                 $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
@@ -96,7 +96,7 @@ foreach ($events['events'] as $event) {
 
                 $result = curl_exec($ch);
                 curl_close($ch);
-                echo $result;
+                
                 $messages = [
                     'type' => 'text',
                     'text' => "Username : " . $result . "\r\n" . $userID . "\r\n" . $userID
