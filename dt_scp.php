@@ -80,7 +80,7 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "ีuser_displayname" => "$userID",
+                    "user_displayname" => "$userID",
                     "fullname" => "$userID",
                     "user_lineid" => "$userID",
                 );
