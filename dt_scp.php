@@ -81,13 +81,14 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "user_displayname" => "",
-                    "fullname" => "",
-                    "user_lineid" => "",
+                    "user_displayname" => "a",
+                    "fullname" => "a",
+                    "user_lineid" => "a",
+                    "phonenumber" => "0987654321"
                 );
                 $data_string = json_encode($data);
 
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/user_create');
 
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
