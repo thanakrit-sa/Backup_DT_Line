@@ -1,5 +1,36 @@
 <?php
 
+function Sendcurl($url, $data) {
+    $ch1 = curl_init();
+    curl_setopt($ch1, CURLOPT_URL, $url);
+    curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);  
+    if ($data) {
+        curl_setopt($ch1, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch1, CURLOPT_POSTFIELDS, $data);
+    }
+    curl_setopt($ch1, CURLOPT_COOKIE, true);
+    curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch1, CURLOPT_USERAGENT, 'okhttp/3.8.0');
+    $result = curl_exec($ch1);
+    return $result;
+}
+$data = array(
+    "user" => 'admin',
+    "pass" => 'admin'
+);
+if(Sendcurl('http://e-sport.in.th/ssdev/dt/dashboard/auth', $data))
+{
+    $data = array(
+        "save" => 'test'
+    );
+    if(Sendcurl('http://e-sport.in.th/ssdev/dt/dashboard/auth', $data))
+        echo 'Need session';
+}
+else
+    echo 'Login Error';
+?>
+
 include('./config.php');
 require_once('./custom/dt_function.php');
 
