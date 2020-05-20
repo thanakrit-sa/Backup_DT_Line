@@ -83,7 +83,8 @@ foreach ($events['events'] as $event) {
                     "user_displayname" => "a",
                     "fullname" => "a",
                     "user_lineid" => "a",
-                    "phonenumber" => "0987654321",
+                    "phonenumber" => "0000000000",
+                    "credit" => "0",
                 );
                 $data_string = json_encode($data);
 
