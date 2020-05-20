@@ -68,12 +68,12 @@ foreach ($events['events'] as $event) {
                     'type' => 'text',
                     'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
                 ];
-            } else if ($bet_string == "คงเหลือ") {
+            } else if ($bet_string == "s") {
                 $messages = [
                     'type' => 'text',
                     'text' => "Username : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "ยอดเงินคงเหลือ : "
                 ];
-            } else if ($bet_string == "ยกเลิก") {
+            } else if ($bet_string == "คงเหลือ") {
                 $messages = [
                     'type' => 'text',
                     'text' => "Username : " . $user_displayname . "\r\n" . "ยกเลิกการเดิมพันทั้งหมด"
