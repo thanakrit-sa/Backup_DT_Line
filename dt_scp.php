@@ -73,6 +73,11 @@ foreach ($events['events'] as $event) {
                     'type' => 'text',
                     'text' => "Username : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "ยอดเงินคงเหลือ : "
                 ];
+            } else if ($bet_string == "ยกเลิก") {
+                $messages = [
+                    'type' => 'text',
+                    'text' => "Username : " . $user_displayname . "\r\n" . "ยกเลิกการเดิมพันทั้งหมด"
+                ];
             } else {
                 if (!$bet_string) {
 

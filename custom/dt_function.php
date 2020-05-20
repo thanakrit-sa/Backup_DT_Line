@@ -112,6 +112,9 @@ function checkbetstring($text)
         } else if ($bet_string == "id") {
 
             $bet_string = "คงเหลือ";
+        } else if ($bet_string == "x") {
+
+            $bet_string = "ยกเลิก";
         } else {
             $bet_string = false;
         }
