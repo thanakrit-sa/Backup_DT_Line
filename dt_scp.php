@@ -79,28 +79,28 @@ foreach ($events['events'] as $event) {
                     'text' => "Username : " . $user_displayname . "\r\n" . "ยกเลิกการเดิมพันทั้งหมด"
                 ];
             } else if ($bet_string == "สมัคร") {
+                $data = array(
+                    "ีuser_displayname" => "$user_displayname",
+                    "fullname" => "$user_displayname",
+                    "user_lineid" => "$userID",
+                );
+                $data_string = json_encode($data);
+                echo $data_string;
+
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+
+                $result = curl_exec($ch);
+                curl_close($ch);
+                echo $result;
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $user_displayname . "\r\n" . "ยกเลิก"
+                    'text' => "Username : " . $result
                 ];
-                // $data = array(
-                //     "ีuser_displayname" => "$user_displayname",
-                //     "fullname" => "$user_displayname",
-                //     "user_lineid" => "$userID",
-                // );
-                // $data_string = json_encode($data);
-                // echo $data_string;
-
-                // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
-
-                // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-
-                // $result = curl_exec($ch);
-                // curl_close($ch);
-                // echo $result;
             } else {
                 if (!$bet_string) {
 
