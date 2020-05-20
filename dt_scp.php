@@ -118,11 +118,14 @@ foreach ($events['events'] as $event) {
 
                 $result = curl_exec($ch);
                 curl_close($ch);
-                $dataresult = json_decode($result,true);
+                
+                foreach ($result as $data) {
+                    $status = $data['status'];
+                };
                 
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $result["status"]
+                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $status
                 ];
             } else {
                 if (!$bet_string) {
