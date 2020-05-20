@@ -81,9 +81,9 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "user_displayname" => "a",
-                    "fullname" => "al",
-                    "user_lineid" => "a",
+                    "user_displayname" => "test",
+                    "fullname" => "test",
+                    "user_lineid" => "test",
                 );
                 $data_string = json_encode($data);
 
