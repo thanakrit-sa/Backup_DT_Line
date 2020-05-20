@@ -27,9 +27,9 @@ if(Sendcurl('http://e-sport.in.th/ssdev/dt/dashboard/auth', $data))
     if(Sendcurl('http://e-sport.in.th/ssdev/dt/dashboard/auth', $data))
         echo 'Need session';
 }
-else
+else {
     echo 'Login Error';
-?>
+}
 
 include('./config.php');
 require_once('./custom/dt_function.php');
