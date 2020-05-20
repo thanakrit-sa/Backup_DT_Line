@@ -80,8 +80,8 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "ีuser_displayname" => "$user_displayname",
-                    "fullname" => "$user_displayname",
+                    "ีuser_displayname" => "$userID",
+                    "fullname" => "$userID",
                     "user_lineid" => "$userID",
                 );
                 $data_string = json_encode($data);
@@ -99,7 +99,7 @@ foreach ($events['events'] as $event) {
                 echo $result;
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $result . "\r\n" . $user_displayname . "\r\n" . $userID
+                    'text' => "Username : " . $result . "\r\n" . $userID . "\r\n" . $userID
                 ];
             } else {
                 if (!$bet_string) {
