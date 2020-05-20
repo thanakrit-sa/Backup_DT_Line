@@ -120,12 +120,12 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 
                 foreach ($result as $data) {
-                    $status = $data['status'];
+                    $status[0] = $data['status'];
                 };
                 
                 $messages = [
                     'type' => 'text',
-                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $status
+                    'text' => "Username : " . $user_displayname . "\r\n" . "ทำการลงทะเบียนสำเร็จ" . $status[0]
                 ];
             } else {
                 if (!$bet_string) {
