@@ -71,7 +71,7 @@ foreach ($events['events'] as $event) {
             } else if ($bet_string == "คงเหลือ") {
                 $messages = [
                     'type' => 'text',
-                    'text' => $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "ยอดเงินคงเหลือ : "
+                    'text' => "Username : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "ยอดเงินคงเหลือ : "
                 ];
             } else {
                 if (!$bet_string) {
