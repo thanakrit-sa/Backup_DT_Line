@@ -109,6 +109,9 @@ function checkbetstring($text)
         } else if ($bet_string == "info") {
 
             $bet_string = "ข้อมูล";
+        } else if ($bet_string == "id") {
+
+            $bet_string = "คงเหลือ";
         } else {
             $bet_string = false;
         }
