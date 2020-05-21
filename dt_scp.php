@@ -89,7 +89,7 @@ foreach ($events['events'] as $event) {
             if ($bet_string == "ข้อมูล") {
                 $messages = [
                     'type' => 'text',
-                    'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
+                    'text' => "UserID : " . $userID . "" . "GroupID : " . $groupID
                 ];
             } else if ($bet_string == "คงเหลือ") {
                 $messages = [
