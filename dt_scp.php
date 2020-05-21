@@ -144,7 +144,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $user_displayname . ' แทง ' . $bet_string . " จำนวน " . $bet_value
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_string . "\r\n" . " จำนวน : " . $bet_value
                     ];
                 }
             }
