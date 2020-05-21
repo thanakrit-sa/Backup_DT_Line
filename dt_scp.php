@@ -89,12 +89,12 @@ foreach ($events['events'] as $event) {
             if ($bet_string == "ข้อมูล") {
                 $messages = [
                     'type' => 'text',
-                    'text' => "UserID : " . $userID . " " . "GroupID : " . $groupID
+                    'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
                 ];
             } else if ($bet_string == "คงเหลือ") {
                 $messages = [
                     'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . " " . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : "
+                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : "
                 ];
             } else if ($bet_string == "ยกเลิก") {
                 $messages = [
