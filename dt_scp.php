@@ -94,7 +94,7 @@ foreach ($events['events'] as $event) {
             } else if ($bet_string == "คงเหลือ") {
                 $messages = [
                     'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : "
+                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . " " . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : "
                 ];
             } else if ($bet_string == "ยกเลิก") {
                 $messages = [
