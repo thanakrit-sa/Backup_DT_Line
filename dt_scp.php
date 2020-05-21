@@ -128,13 +128,13 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $user_displayname . " รูปแบบการเดิมพันของท่านไม่ถูกต้อง"
+                        'text' => "Username : " . $user_displayname . "\r\n" . " รูปแบบการเดิมพันของท่านไม่ถูกต้อง"
                     ];
                 } else if (!is_numeric($bet_value)) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $user_displayname . " ยอดเงินเดิมพันไม่ถูกต้อง"
+                        'text' => "Username : " . $user_displayname . "\r\n" . " ยอดเงินเดิมพันไม่ถูกต้อง"
                     ];
                 } else {
 
