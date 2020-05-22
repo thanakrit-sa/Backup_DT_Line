@@ -44,18 +44,16 @@ foreach ($events['events'] as $event) {
     $groupID = $event['source']['groupId'];
 
     if ($event['type'] == 'follow') {
+        $text = $event['message']['text'];
+        $text = str_replace(' ', '', $text);
+        $text = preg_replace('~[\r\n]+~', '', $text);
         $replyToken = $event['replyToken'];
+        $text = iconv_substr($text, 0);
+        $text_forcheck_string = $text;
+        $text_forcheck_number = $text;
         $messages = [
-            "events" => [[
-                "type" => "follow",
-                "replyToken" => $replyToken,
-                "source" => [
-                    "userId" => $userID,
-                    "type" => "user"
-                ],
-                "timestamp" => 1547104557739
-            ]],
-            "destination" => "Ucedadc3e4286272e4641d8591efe8794"
+            'type' => 'text',
+            'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
         ];
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
