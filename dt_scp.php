@@ -42,15 +42,16 @@ foreach ($events['events'] as $event) {
     $userID = $event['source']['userId'];
     // $line_id = $event['source']['userId'];
     $groupID = $event['source']['groupId'];
+    $text = $event['message']['text'];
+    $text = str_replace(' ', '', $text);
+    $text = preg_replace('~[\r\n]+~', '', $text);
+    $replyToken = $event['replyToken'];
+    $text = iconv_substr($text, 0);
+    $text_forcheck_string = $text;
+    $text_forcheck_number = $text;
 
     if ($event['type'] == 'follow') {
-        $text = $event['message']['text'];
-        $text = str_replace(' ', '', $text);
-        $text = preg_replace('~[\r\n]+~', '', $text);
-        $replyToken = $event['replyToken'];
-        $text = iconv_substr($text, 0);
-        $text_forcheck_string = $text;
-        $text_forcheck_number = $text;
+        
         $messages = [
             'type' => 'text',
             'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
@@ -58,18 +59,8 @@ foreach ($events['events'] as $event) {
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
-        $text = $event['message']['text'];
-        $text = str_replace(' ', '', $text);
-        $text = preg_replace('~[\r\n]+~', '', $text);
-        $replyToken = $event['replyToken'];
-        $text = iconv_substr($text, 0);
-        $text_forcheck_string = $text;
-        $text_forcheck_number = $text;
-
-
         //get displayname 
         $user_displayname = linedisplayname($groupID, $userID);
-
 
         // if(!isset($userID)){
 
@@ -86,8 +77,6 @@ foreach ($events['events'] as $event) {
         //       ];
 
         // }
-
-
 
         $split_slash_count = substr_count($text, "/");
 
