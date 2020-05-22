@@ -141,10 +141,22 @@ foreach ($events['events'] as $event) {
                 }
             } else {
                 if (!$bet_string) {
-
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ รูปแบบการเดิมพันไม่ถูกต้อง"
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ รูปแบบการเดิมพันไม่ถูกต้อง",
+                        "quickReply" => [
+                            "items" => [
+                                [
+                                    "type" => "action",
+                                    "imageUrl" => "https://example.com/sushi.png",
+                                    "action" => [
+                                        "type" => "message",
+                                        "label" => "Sushi",
+                                        "text" => "Sushi"
+                                    ]
+                                ]
+                            ]
+                        ]
                     ];
                 } else if (!is_numeric($bet_value)) {
 
