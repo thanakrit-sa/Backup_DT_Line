@@ -4,15 +4,13 @@ $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 function reg_login($username, $password)
 {
     global $url;
-    $params = "username=admin&password=admin";
-
-
+    $data = "username=admin&password=admin";
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
@@ -194,7 +192,7 @@ foreach ($events['events'] as $event) {
 
             $messages = [
                 'type' => 'text',
-                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . " " . "💰 ยอดเงินคงเหลือ : "
+                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : "
             ];
         }
     }
