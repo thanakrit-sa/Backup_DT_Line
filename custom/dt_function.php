@@ -118,6 +118,9 @@ function checkbetstring($text)
         } else if ($bet_string == "play") {
 
             $bet_string = "สมัคร";
+        } else if ($bet_string == "step") {
+
+            $bet_string = "การเล่น";
         } else {
             $bet_string = false;
         }
