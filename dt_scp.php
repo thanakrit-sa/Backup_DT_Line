@@ -62,7 +62,7 @@ foreach ($events['events'] as $event) {
         
         $messages = [
             'type' => 'text',
-            'text' => "ยินดรต้อนรับ : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
+            'text' => "ยินดีต้อนรับ : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
         ];
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
