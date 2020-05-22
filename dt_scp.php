@@ -11,12 +11,12 @@ function reg_login($username, $password)
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_POST, 1); 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $params); 
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    $result = curl_exec($ch); 
+    $result = curl_exec($ch);
     curl_close($ch);
     return $result;
 }
@@ -43,7 +43,20 @@ foreach ($events['events'] as $event) {
     $line_id = $event['source']['userId'];
     $groupID = $event['source']['groupId'];
 
-
+    if ($event['type'] == 'follow') {
+        $messages = [
+            "events" => [[
+                "type" => "follow",
+                "replyToken" => "31476556789a4365...",
+                "source" => [
+                    "userId" => "U3c28a70ed7c5e7ce2...",
+                    "type" => "user"
+                ],
+                "timestamp" => 1547104557739
+            ]],
+            "destination" => "U820116ffcbe3f3ca71..."
+        ];
+    }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
         $text = $event['message']['text'];
@@ -103,7 +116,6 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 if ($bet_string == "สมัคร") {
-
                 } else {
                     $data = array(
                         "user_displayname" => $user_displayname,
@@ -180,7 +192,7 @@ foreach ($events['events'] as $event) {
 
             $messages = [
                 'type' => 'text',
-                'text' => " ชื่อผู้ใช้งาน : ".$user_displayname . " " . $reponse_bet
+                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet
             ];
         }
     }
