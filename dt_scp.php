@@ -45,16 +45,8 @@ foreach ($events['events'] as $event) {
 
     if ($event['type'] == 'follow') {
         $messages = [
-            "events" => [[
-                "type" => "follow",
-                "replyToken" => "31476556789a4365...",
-                "source" => [
-                    "userId" => "U3c28a70ed7c5e7ce2...",
-                    "type" => "user"
-                ],
-                "timestamp" => 1547104557739
-            ]],
-            "destination" => "U820116ffcbe3f3ca71..."
+            'type' => 'text',
+            'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
         ];
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
