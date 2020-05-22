@@ -49,6 +49,7 @@ foreach ($events['events'] as $event) {
     $text = iconv_substr($text, 0);
     $text_forcheck_string = $text;
     $text_forcheck_number = $text;
+    $user_displayname = linedisplayname($groupID, $userID);
 
     if ($event['type'] == 'follow') {
         
@@ -57,10 +58,14 @@ foreach ($events['events'] as $event) {
             'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
         ];
     }
+    if ($event['type'] == 'memberJoined') {
+        
+        $messages = [
+            'type' => 'text',
+            'text' => "ยินดรต้อนรับ : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
+        ];
+    }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-
-        //get displayname 
-        $user_displayname = linedisplayname($groupID, $userID);
 
         // if(!isset($userID)){
 
