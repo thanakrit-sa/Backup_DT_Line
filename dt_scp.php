@@ -42,7 +42,7 @@ foreach ($events['events'] as $event) {
     $userID = $event['source']['userId'];
     $line_id = $event['source']['userId'];
     $groupID = $event['source']['groupId'];
-
+    echo $event['type'];
     if ($event['type'] == 'follow') {
         $messages = [
             'type' => 'text',
