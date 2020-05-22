@@ -36,20 +36,19 @@ $content = file_get_contents('php://input');
 
 $events = json_decode($content, true);
 
-
 foreach ($events['events'] as $event) {
 
     $userID = $event['source']['userId'];
     $line_id = $event['source']['userId'];
     $groupID = $event['source']['groupId'];
-    echo $event['type'];
+    
     if ($event['type'] == 'follow') {
         $messages = [
             'type' => 'text',
             'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
         ];
     }
-    if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+    else {
 
         $text = $event['message']['text'];
         $text = str_replace(' ', '', $text);
