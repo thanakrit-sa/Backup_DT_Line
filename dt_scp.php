@@ -148,11 +148,10 @@ foreach ($events['events'] as $event) {
                             "items" => [
                                 [
                                     "type" => "action",
-                                    "imageUrl" => "https://example.com/sushi.png",
                                     "action" => [
                                         "type" => "message",
-                                        "label" => "Sushi",
-                                        "text" => "Sushi"
+                                        "label" => "👉🏿 ดูคู่มือการเดิมพัน",
+                                        "text" => "step"
                                     ]
                                 ]
                             ]
