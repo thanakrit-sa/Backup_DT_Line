@@ -17,7 +17,7 @@ function reg_login($username, $password)
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
-}
+
 
 
 include('./config.php');
@@ -122,7 +122,7 @@ foreach ($events['events'] as $event) {
                     );
                     $data_string = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
@@ -247,3 +247,4 @@ foreach ($events['events'] as $event) {
 }
 
 // echo "OK";
+}
