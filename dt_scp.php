@@ -17,7 +17,7 @@ function reg_login($username, $password)
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
-
+}
 
 
 include('./config.php');
@@ -247,4 +247,3 @@ foreach ($events['events'] as $event) {
 }
 
 // echo "OK";
-}
