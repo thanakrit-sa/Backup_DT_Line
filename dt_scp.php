@@ -19,21 +19,6 @@
 //     curl_close($ch);
 //     return $result;
 // }
-$url = 'http://e-sport.in.th/ssdev/dt/dashboard/auth'; // กำหนด URl ของเว็บไวต์ B
-$request = 'username=admin&password=admin'; // กำหนด HTTP Request โดยระบุ username=guest และ password=เguest (รูปแบบเหมือนการส่งค่า $_GET แต่ข้างหน้าข้อความไม่มีเครื่องหมาย ?)
-  
-$ch = curl_init(); // เริ่มต้นใช้งาน cURL
-  
-curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
-curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
-curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
-curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
-  
-$response = curl_exec($ch); // ประมวลผล cURL
-curl_close($ch); // ปิดการใช้งาน cURL
-  
-echo $response; // แสดงผลการทำงาน
 
 
 
@@ -141,69 +126,47 @@ foreach ($events['events'] as $event) {
                     'text' => "\" วิธีการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส = เสือ" . "\r\n" . "พิมพ์ : ม = มังกร" . "\r\n" . "พิมพ์ : ค = คู่" . "\r\n" . "พิมพ์ : สม = เสมอ" . "\r\n" . "พิมพ์ : สคู่ = เสือเลขคู่" . "\r\n" . "พิมพ์ : สคี่ = เสือเลขคี่" . "\r\n" . "พิมพ์ : มคู่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : มคี่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : สดำ = เสือดำ" . "\r\n" . "พิมพ์ : สแดง = เสือแดง" . "\r\n" . "พิมพ์ : มดำ = มังกรดำ" . "\r\n" . "พิมพ์ : มแดง = มังกรแดง" . "\r\n" . "\r\n" . "\" รูปแบบการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท" . "\r\n" . "\r\n" . "\" การเดิมพันแบบซ้อนทับ \"" . "\r\n" . "พิมพ์ : ส1000/ม5000/สดำ1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท แทงมังกร5000บาท แทงเสือดำ1000บาท"
                 ];
             } else if ($bet_string == "สมัคร") {
-                
-                $data = array(
-                    "user_displayname" => "b",
-                    "fullname" => "b",
-                    "user_lineid" => "b",
-                );
-                $data_string = json_encode($data);
-
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
-
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
                 $result = curl_exec($ch);
                 curl_close($ch);
+                $resultData = json_decode($result, true);
+                $data = $resultData['data'];
+                $line_id = $data['user_lineid'];
+                if ($line_id == $userID) {
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
+                    ];
+                } else {
+                    $data = array(
+                        "user_displayname" => $user_displayname,
+                        "fullname" => $user_displayname,
+                        "user_lineid" => $userID,
+                    );
+                    $data = array(
+                        "user_displayname" => "a",
+                        "fullname" => "a",
+                        "user_lineid" => "a",
+                    );
+                    $data_string = json_encode($data);
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n" . $data_string . $result
-                ];
-                // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/profile/' . $userID);
-                // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-                // $result = curl_exec($ch);
-                // curl_close($ch);
-                // $resultData = json_decode($result, true);
-                // $data = $resultData['data'];
-                // $line_id = $data['user_lineid'];
-                // if ($line_id == $userID) {
-                //     $messages = [
-                //         'type' => 'text',
-                //         'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
-                //     ];
-                // } else {
-                    // $data = array(
-                    //     "user_displayname" => $user_displayname,
-                    //     "fullname" => $user_displayname,
-                    //     "user_lineid" => $userID,
-                    // );
-                    // $data = array(
-                    //     "user_displayname" => "a",
-                    //     "fullname" => "a",
-                    //     "user_lineid" => "a",
-                    // );
-                    // $data_string = json_encode($data);
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
-                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
 
-                    // $result = curl_exec($ch);
-                    // curl_close($ch);
-
-                    // $messages = [
-                    //     'type' => 'text',
-                    //     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
-                    // ];
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
+                    ];
                 }
             } else {
                 if (!$bet_string) {
@@ -312,3 +275,4 @@ foreach ($events['events'] as $event) {
 
 
 // echo "OK";
+}
