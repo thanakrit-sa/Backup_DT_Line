@@ -122,7 +122,7 @@ foreach ($events['events'] as $event) {
                     );
                     $data_string = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
 
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
@@ -132,13 +132,9 @@ foreach ($events['events'] as $event) {
                     $result = curl_exec($ch);
                     curl_close($ch);
 
-                    // $messages = [
-                    //     'type' => 'text',
-                    //     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . $data_string
-                    // ];
                     $messages = [
                         'type' => 'text',
-                        'text' => $result. $data_string
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n" . $result
                     ];
             } else {
                 if (!$bet_string) {
