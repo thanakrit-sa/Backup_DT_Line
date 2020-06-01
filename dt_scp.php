@@ -125,9 +125,13 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 $resultData = json_decode($result, true);
 
+                foreach ($resultData['data'] as $data) {
+                    
+                }
+
                 $messages = [
                     'type' => 'text',
-                    'text' => $result['data']
+                    'text' => $data
                 ];
 
 
@@ -212,7 +216,7 @@ foreach ($events['events'] as $event) {
                 $bet_string = checkbetstring($element);
                 $bet_value = checkbetvalue($element);
 
-                echo $bet_string;
+                // echo $bet_string;
                 if (!$bet_string) {
 
                     $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
