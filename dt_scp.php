@@ -131,7 +131,7 @@ foreach ($events['events'] as $event) {
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $data
+                    'text' => $data['user_displayname']
                 ];
 
 
