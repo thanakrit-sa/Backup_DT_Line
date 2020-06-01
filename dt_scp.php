@@ -20,31 +20,42 @@
 //     return $result;
 // }
 
-$username="admin"; 
-$password="admin"; 
-$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+define("DOC_ROOT","/path/to/html");
+//username and password of account
+$username = trim($values["admin"]);
+$password = trim($values["admin"]);
 
-$postdata = "username=admin&password=admin"; 
+//set the directory for the cookie using defined document root var
+$path = DOC_ROOT."/ctemp";
+//build a unique path with every request to store. the info per user with custom func. I used this function to build unique paths based on member ID, that was for my use case. It can be a regular dir.
+//$path = build_unique_path($path); // this was for my use case
 
+//login form action url
+$url="http://e-sport.in.th/ssdev/dt/dashboard/auth"; 
+$postinfo = "username=".$username."&password=".$password;
 
-$ch = curl_init(); 
-curl_setopt ($ch, CURLOPT_URL, $url); 
-curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
-curl_setopt ($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"); 
-curl_setopt ($ch, CURLOPT_TIMEOUT, 60); 
-curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1); 
-curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt ($ch, CURLOPT_COOKIEJAR, $cookie); 
-curl_setopt ($ch, CURLOPT_COOKIEFILE, $cookie); 
-curl_setopt ($ch, CURLOPT_REFERER, $url); 
+$cookie_file_path = $path."/cookie.txt";
 
-curl_setopt ($ch, CURLOPT_POSTFIELDS, $postdata); 
-curl_setopt ($ch, CURLOPT_POST, 1); 
-$result = curl_exec ($ch); 
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_NOBODY, false);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 
-echo $result;  
+curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file_path);
+//set the cookie the site has for certain features, this is optional
+curl_setopt($ch, CURLOPT_COOKIE, "cookiename=0");
+curl_setopt($ch, CURLOPT_USERAGENT,
+    "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_REFERER, $_SERVER['REQUEST_URI']);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 
-curl_close($ch);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postinfo);
+curl_exec($ch);
 
 
 
