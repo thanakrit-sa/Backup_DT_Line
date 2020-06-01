@@ -126,11 +126,11 @@ foreach ($events['events'] as $event) {
                 $resultData = json_decode($result, true);
 
                 $data = $resultData['data'];
-                $name = $data['id'];
+                $line_id = $data['user_lineid'];
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $name
+                    'text' => $line_id
                 ];
 
 
