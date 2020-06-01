@@ -146,11 +146,7 @@ foreach ($events['events'] as $event) {
                         "fullname" => $user_displayname,
                         "user_lineid" => $userID,
                     );
-                    $data = array(
-                        "user_displayname" => "a",
-                        "fullname" => "a",
-                        "user_lineid" => "a",
-                    );
+                
                     $data_string = json_encode($data);
 
                     $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
