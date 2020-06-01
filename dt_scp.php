@@ -19,6 +19,21 @@
 //     curl_close($ch);
 //     return $result;
 // }
+$url = 'http://e-sport.in.th/ssdev/dt/dashboard/auth'; // กำหนด URl ของเว็บไวต์ B
+$request = 'username=admin&password=admin'; // กำหนด HTTP Request โดยระบุ username=guest และ password=เguest (รูปแบบเหมือนการส่งค่า $_GET แต่ข้างหน้าข้อความไม่มีเครื่องหมาย ?)
+  
+$ch = curl_init(); // เริ่มต้นใช้งาน cURL
+  
+curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
+curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
+curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
+curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
+  
+$response = curl_exec($ch); // ประมวลผล cURL
+curl_close($ch); // ปิดการใช้งาน cURL
+  
+echo $response; // แสดงผลการทำงาน
 
 
 
@@ -126,26 +141,7 @@ foreach ($events['events'] as $event) {
                     'text' => "\" วิธีการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส = เสือ" . "\r\n" . "พิมพ์ : ม = มังกร" . "\r\n" . "พิมพ์ : ค = คู่" . "\r\n" . "พิมพ์ : สม = เสมอ" . "\r\n" . "พิมพ์ : สคู่ = เสือเลขคู่" . "\r\n" . "พิมพ์ : สคี่ = เสือเลขคี่" . "\r\n" . "พิมพ์ : มคู่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : มคี่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : สดำ = เสือดำ" . "\r\n" . "พิมพ์ : สแดง = เสือแดง" . "\r\n" . "พิมพ์ : มดำ = มังกรดำ" . "\r\n" . "พิมพ์ : มแดง = มังกรแดง" . "\r\n" . "\r\n" . "\" รูปแบบการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท" . "\r\n" . "\r\n" . "\" การเดิมพันแบบซ้อนทับ \"" . "\r\n" . "พิมพ์ : ส1000/ม5000/สดำ1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท แทงมังกร5000บาท แทงเสือดำ1000บาท"
                 ];
             } else if ($bet_string == "สมัคร") {
-                $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
-
-
-                function reg_login($username, $password)
-                {
-                    global $url;
-                    $data = "username=admin&password=admin";
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-                    curl_setopt($ch, CURLOPT_HEADER, 0);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                    $result = curl_exec($ch);
-                    curl_close($ch);
-                    return $result;
-                }
+                
                 $data = array(
                     "user_displayname" => "b",
                     "fullname" => "b",
@@ -182,135 +178,135 @@ foreach ($events['events'] as $event) {
                 //         'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
                 //     ];
                 // } else {
-                // $data = array(
-                //     "user_displayname" => $user_displayname,
-                //     "fullname" => $user_displayname,
-                //     "user_lineid" => $userID,
-                // );
-                // $data = array(
-                //     "user_displayname" => "a",
-                //     "fullname" => "a",
-                //     "user_lineid" => "a",
-                // );
-                // $data_string = json_encode($data);
+                    // $data = array(
+                    //     "user_displayname" => $user_displayname,
+                    //     "fullname" => $user_displayname,
+                    //     "user_lineid" => $userID,
+                    // );
+                    // $data = array(
+                    //     "user_displayname" => "a",
+                    //     "fullname" => "a",
+                    //     "user_lineid" => "a",
+                    // );
+                    // $data_string = json_encode($data);
 
-                // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
+                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
-                // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                // $result = curl_exec($ch);
-                // curl_close($ch);
+                    // $result = curl_exec($ch);
+                    // curl_close($ch);
 
-                // $messages = [
-                //     'type' => 'text',
-                //     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
-                // ];
-            }
-        } else {
-            if (!$bet_string) {
-                $messages = [
-                    'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ รูปแบบการเดิมพันไม่ถูกต้อง",
-                    "quickReply" => [
-                        "items" => [
-                            [
-                                "type" => "action",
-                                "action" => [
-                                    "type" => "message",
-                                    "label" => "👉 ดูคู่มือการเดิมพัน",
-                                    "text" => "step"
+                    // $messages = [
+                    //     'type' => 'text',
+                    //     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
+                    // ];
+                }
+            } else {
+                if (!$bet_string) {
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ รูปแบบการเดิมพันไม่ถูกต้อง",
+                        "quickReply" => [
+                            "items" => [
+                                [
+                                    "type" => "action",
+                                    "action" => [
+                                        "type" => "message",
+                                        "label" => "👉 ดูคู่มือการเดิมพัน",
+                                        "text" => "step"
+                                    ]
                                 ]
                             ]
                         ]
-                    ]
-                ];
-            } else if (!is_numeric($bet_value)) {
+                    ];
+                } else if (!is_numeric($bet_value)) {
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ ยอดเงินเดิมพันไม่ถูกต้อง",
-                    "quickReply" => [
-                        "items" => [
-                            [
-                                "type" => "action",
-                                "action" => [
-                                    "type" => "message",
-                                    "label" => "👉 ดูคู่มือการเดิมพัน",
-                                    "text" => "step"
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "⛔️ ยอดเงินเดิมพันไม่ถูกต้อง",
+                        "quickReply" => [
+                            "items" => [
+                                [
+                                    "type" => "action",
+                                    "action" => [
+                                        "type" => "message",
+                                        "label" => "👉 ดูคู่มือการเดิมพัน",
+                                        "text" => "step"
+                                    ]
                                 ]
                             ]
                         ]
-                    ]
-                ];
-            } else {
+                    ];
+                } else {
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_string . "\r\n" . "จำนวน : " . $bet_value . "\r\n" . "💰 ยอดเงินคงเหลือ : "
-                ];
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_string . "\r\n" . "จำนวน : " . $bet_value . "\r\n" . "💰 ยอดเงินคงเหลือ : "
+                    ];
+                }
             }
-        }
-    } else if ($split_slash_count > 0) {
+        } else if ($split_slash_count > 0) {
 
-        $reponse_bet = '';
-        $bet_type = "multiple";
-        $arrKeywords = explode("/", $text);
-        $i = 0;
-        foreach ($arrKeywords as $element) {
+            $reponse_bet = '';
+            $bet_type = "multiple";
+            $arrKeywords = explode("/", $text);
+            $i = 0;
+            foreach ($arrKeywords as $element) {
 
-            $i++;
-            $bet_string = checkbetstring($element);
-            $bet_value = checkbetvalue($element);
+                $i++;
+                $bet_string = checkbetstring($element);
+                $bet_value = checkbetvalue($element);
 
-            // echo $bet_string;
-            if (!$bet_string) {
+                // echo $bet_string;
+                if (!$bet_string) {
 
-                $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
-            } else if (!is_numeric($bet_value)) {
+                    $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
+                } else if (!is_numeric($bet_value)) {
 
 
-                $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
-            } else {
+                    $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
+                } else {
 
-                $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value;
+                    $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value;
+                }
+
+
+                $reponse_bet = $reponse_bet . "\n" . $element_reponse;
             }
 
 
-            $reponse_bet = $reponse_bet . "\n" . $element_reponse;
+            $messages = [
+                'type' => 'text',
+                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : "
+            ];
         }
-
-
-        $messages = [
-            'type' => 'text',
-            'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : "
-        ];
     }
-}
 
 
 
 
 
 
-$url = 'https://api.line.me/v2/bot/message/reply';
-$data = [
-    'replyToken' => $replyToken,
-    'messages' => [$messages],
-];
-$post = json_encode($data);
-$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+    $url = 'https://api.line.me/v2/bot/message/reply';
+    $data = [
+        'replyToken' => $replyToken,
+        'messages' => [$messages],
+    ];
+    $post = json_encode($data);
+    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-$result = curl_exec($ch);
-curl_close($ch);
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
 
     // echo $result . "\r\n";
 
