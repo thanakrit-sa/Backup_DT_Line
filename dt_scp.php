@@ -1,23 +1,23 @@
 <?php
-$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+// $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
-function reg_login($username, $password)
-{
-    global $url;
-    $data = "username=admin&password=admin";
+// function reg_login($username, $password)
+// {
+//     global $url;
+//     $data = "username=admin&password=admin";
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//     $ch = curl_init();
+//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//     curl_setopt($ch, CURLOPT_HEADER, 0);
+//     curl_setopt($ch, CURLOPT_POST, 1);
+//     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//     curl_setopt($ch, CURLOPT_URL, $url);
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    $result = curl_exec($ch);
-    curl_close($ch);
-    return $result;
-}
+//     $result = curl_exec($ch);
+//     curl_close($ch);
+//     return $result;
+// }
 
 
 include('./config.php');
