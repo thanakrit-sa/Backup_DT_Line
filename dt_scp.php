@@ -1,6 +1,7 @@
 <?php
 // $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
+
 // function reg_login($username, $password)
 // {
 //     global $url;
@@ -19,10 +20,23 @@
 //     return $result;
 // }
 
+$post = [
+    'username' => $_SESSION['admin'],
+    'password' => $_SESSION['admin'],
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/auth");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+$response = curl_exec($ch);
+$result = curl_exec($ch);
+curl_close($ch);
+
+
 
 include('./config.php');
 require_once('./custom/dt_function.php');
-
 
 http_response_code(200);
 
@@ -31,7 +45,6 @@ $current_datetime = date("Y-m-d H:i:s");
 $content = file_get_contents('php://input');
 
 $events = json_decode($content, true);
-
 
 foreach ($events['events'] as $event) {
 
@@ -65,22 +78,6 @@ foreach ($events['events'] as $event) {
         ];
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-
-        // if(!isset($userID)){
-
-        //     $messages = [
-        //         'type' => 'text',
-        //         'text' => 'account ของท่านไม่สามารถใช้งานได้ '.$user_displayname.' uid '.$userID.' gid '.$groupID
-        //       ];
-
-        // }else{
-
-        //     $messages = [
-        //         'type' => 'text',
-        //         'text' => 'ยินดีต้อนรับ '.$user_displayname
-        //       ];
-
-        // }
 
         $split_slash_count = substr_count($text, "/");
 
@@ -156,14 +153,19 @@ foreach ($events['events'] as $event) {
                         'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
                     ];
                 } else {
+                    // $data = array(
+                    //     "user_displayname" => $user_displayname,
+                    //     "fullname" => $user_displayname,
+                    //     "user_lineid" => $userID,
+                    // );
                     $data = array(
-                        "user_displayname" => $user_displayname,
-                        "fullname" => $user_displayname,
-                        "user_lineid" => $userID,
+                        "user_displayname" => "a",
+                        "fullname" => "a",
+                        "user_lineid" => "a",
                     );
                     $data_string = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
