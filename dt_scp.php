@@ -127,7 +127,7 @@ foreach ($events['events'] as $event) {
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $resultData . "\r\n" . $result
+                    'text' => $resultData
                 ];
 
 
