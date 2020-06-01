@@ -132,9 +132,13 @@ foreach ($events['events'] as $event) {
                     $result = curl_exec($ch);
                     curl_close($ch);
 
+                    // $messages = [
+                    //     'type' => 'text',
+                    //     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . $data_string
+                    // ];
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . $data_string
+                        'text' => $result. $data_string
                     ];
             } else {
                 if (!$bet_string) {
