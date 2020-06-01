@@ -96,7 +96,7 @@ foreach ($events['events'] as $event) {
                 if ($line_id == $userID) {
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : " . $credit . "บาท"
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : " . $credit . " บาท"
                     ];
                 } else {
                     $messages = [
