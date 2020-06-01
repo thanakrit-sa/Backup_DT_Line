@@ -20,18 +20,31 @@
 //     return $result;
 // }
 
-$post = [
-    'admin' => $_SESSION['username'],
-    'admin' => $_SESSION['password'],
-];
+$username="admin"; 
+$password="admin"; 
+$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/auth");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-$response = curl_exec($ch);
-$result = curl_exec($ch);
-curl_close($ch);
+$postdata = "EnteredUserID=".$username."&password=".$password."&domain=&UserID=&rememberPass="; 
+
+
+$ch = curl_init(); 
+curl_setopt ($ch, CURLOPT_URL, $url); 
+curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
+curl_setopt ($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6"); 
+curl_setopt ($ch, CURLOPT_TIMEOUT, 60); 
+curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1); 
+curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt ($ch, CURLOPT_COOKIEJAR, $cookie); 
+curl_setopt ($ch, CURLOPT_COOKIEFILE, $cookie); 
+curl_setopt ($ch, CURLOPT_REFERER, $url); 
+
+curl_setopt ($ch, CURLOPT_POSTFIELDS, $postdata); 
+curl_setopt ($ch, CURLOPT_POST, 1); 
+$result = curl_exec ($ch); 
+
+echo $result;  
+
+curl_close($ch)
 
 
 
@@ -139,13 +152,13 @@ foreach ($events['events'] as $event) {
                 ];
             } else if ($bet_string == "สมัคร") {
                 $data = array(
-                    "user_displayname" => "a",
-                    "fullname" => "a",
-                    "user_lineid" => "a",
+                    "user_displayname" => "b",
+                    "fullname" => "b",
+                    "user_lineid" => "b",
                 );
                 $data_string = json_encode($data);
 
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
 
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
