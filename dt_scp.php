@@ -21,8 +21,8 @@
 // }
 
 $post = [
-    'username' => $_SESSION['admin'],
-    'password' => $_SESSION['admin'],
+    'admin' => $_SESSION['username'],
+    'admin' => $_SESSION['password'],
 ];
 
 $ch = curl_init();
@@ -305,6 +305,6 @@ foreach ($events['events'] as $event) {
     curl_close($ch);
 
     // echo $result . "\r\n";
-}
+
 
 // echo "OK";
