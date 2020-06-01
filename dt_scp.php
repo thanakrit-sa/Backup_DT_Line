@@ -69,21 +69,21 @@ foreach ($events['events'] as $event) {
     }
     if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 
-        // if(!isset($userID)){
+        if(!isset($userID)){
 
-        //     $messages = [
-        //         'type' => 'text',
-        //         'text' => 'account ของท่านไม่สามารถใช้งานได้ '.$user_displayname.' uid '.$userID.' gid '.$groupID
-        //       ];
+            $messages = [
+                'type' => 'text',
+                'text' => 'account ของท่านไม่สามารถใช้งานได้ '.$user_displayname.' uid '.$userID.' gid '.$groupID
+              ];
 
-        // }else{
+        }else{
 
-        //     $messages = [
-        //         'type' => 'text',
-        //         'text' => 'ยินดีต้อนรับ '.$user_displayname
-        //       ];
+            $messages = [
+                'type' => 'text',
+                'text' => 'ยินดีต้อนรับ '.$user_displayname
+              ];
 
-        // }
+        }
 
         $split_slash_count = substr_count($text, "/");
 
