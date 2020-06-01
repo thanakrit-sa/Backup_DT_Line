@@ -24,7 +24,7 @@ $username="admin";
 $password="admin"; 
 $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
-$postdata = "EnteredUserID=".$username."&password=".$password."&domain=&UserID=&rememberPass="; 
+$postdata = "username".$username."password".$password; 
 
 
 $ch = curl_init(); 
