@@ -91,11 +91,12 @@ foreach ($events['events'] as $event) {
                 $resultData = json_decode($result, true);
                 $data = $resultData['data'];
                 $line_id = $data['user_lineid'];
+                $credit = $data['credit'];
 
                 if ($line_id == $userID) {
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : "
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "UserID : " . $userID . "\r\n" . "💰ยอดเงินคงเหลือ : " . $credit . "บาท"
                     ];
                 } else {
                     $messages = [
