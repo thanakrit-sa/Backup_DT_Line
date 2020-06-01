@@ -125,13 +125,13 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 $resultData = json_decode($result, true);
 
-                foreach ($resultData['data'] as $data) {
-                    $name = $data['user_displayname'];
-                }
+                // foreach ($resultData['data'] as $data) {
+                //     $name = $data['user_displayname'];
+                // }
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $name
+                    'text' => $resultData['data']
                 ];
 
 
