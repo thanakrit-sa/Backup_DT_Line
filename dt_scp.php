@@ -220,20 +220,33 @@ foreach ($events['events'] as $event) {
                     $post['bet_text'] = 'example@mail.com';
                     $post['value'] = 'example@mail.com';
                     $post['bet_code'] = 'example@mail.com';
-                   
-                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet/logbet_create';
-                    $fields = array (
-                    'user_id' => urlencode($post['user_id']),
-                    'user_lineid' => urlencode($post['user_lineid']),
-                    'user_displayname' => urlencode($post['user_displayname']),
-                    'bet_text' => urlencode($post['bet_text']),
-                    'value' => urlencode($post['value']),
-                    'bet_code' => urlencode($post['bet_code'])
-                );
+
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                    $fields = array(
+                        'user_id' => urlencode($post['user_id']),
+                        'user_lineid' => urlencode($post['user_lineid']),
+                        'user_displayname' => urlencode($post['user_displayname']),
+                        'bet_text' => urlencode($post['bet_text']),
+                        'value' => urlencode($post['value']),
+                        'bet_code' => urlencode($post['bet_code'])
+                    );
+                    foreach ($fields as $key => $value) {
+                        $fields_string .= $key . '=' . $value . '&';
+                    }
+                    rtrim($fields_string, '&');
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, count($fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    //check the result
+                    var_dump($result);
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $result
+                        'text' => $fields_string . $result
                     ];
                 }
             }
