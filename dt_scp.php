@@ -1,20 +1,20 @@
 <?php
 
-// $ch = curl_init();
-// curl_setopt($ch, CURLOPT_URL, 'http://172.104.46.20/ssdev/dt/dashboard/auth');
-// curl_setopt($ch, CURLOPT_POST, 1);
-// curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . "admin" . "&password=" . "admin");
-// curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-// curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
-// curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
-// curl_setopt($ch, CURLOPT_COOKIESESSION, 1);
-// $ret = curl_exec($ch);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://172.104.46.20/ssdev/dt/dashboard/auth');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . "admin" . "&password=" . "admin");
+curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
+curl_setopt($ch, CURLOPT_COOKIESESSION, 1);
+$ret = curl_exec($ch);
 
-// // Close handle
-// curl_close($ch);
-// return $ret;
+// Close handle
+curl_close($ch);
+return $ret;
 
 include('./config.php');
 require_once('./custom/dt_function.php');
