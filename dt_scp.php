@@ -225,7 +225,7 @@ foreach ($events['events'] as $event) {
 
                     $data_createBet = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet/logbet_create');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
