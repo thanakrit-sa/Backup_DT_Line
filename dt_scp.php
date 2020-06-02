@@ -218,7 +218,7 @@ foreach ($events['events'] as $event) {
                         "user_id" => $user,
                         "user_lineid" => "aaaaaaaa",
                         "user_displayname" => "a",
-                        "bet_text" => "aaaa",
+                        "bet_text" => $bet_string,
                         "value" => $bet_value,
                         "bet_code" => null,
                     );
