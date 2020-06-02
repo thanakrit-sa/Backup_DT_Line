@@ -204,13 +204,22 @@ foreach ($events['events'] as $event) {
                         ]
                     ];
                 } else {
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    $resultData = json_decode($result, true);
+                    $data = $resultData['data'];
+                    $user_id = $data['id'];
                     $data = array(
-                        "user_id" => $user_displayname,
+                        "user_id" => $user_id,
                         "user_lineid" => $userID,
                         "user_displayname" => $user_displayname,
-                        "bet_text" => $userID,
-                        "value" => $userID,
-                        "bet_code" => $userID,
+                        "bet_text" => $bet_string,
+                        "value" => $bet_value,
+                        "bet_code" => null,
                     );
 
                     $data_createBet = json_encode($data);
@@ -227,7 +236,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_string . "\r\n" . "จำนวน : " . $bet_value . "\r\n" . "💰 ยอดเงินคงเหลือ : "
+                        'text' => $data_createBet
                     ];
                 }
             }
