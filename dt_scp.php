@@ -239,7 +239,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $fields_string . $result
+                        'text' => $result
                     ];
                 }
             }
