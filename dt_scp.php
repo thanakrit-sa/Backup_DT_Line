@@ -237,6 +237,8 @@ foreach ($events['events'] as $event) {
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POST, count($fields));
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
 
                     //execute post
                     $result = curl_exec($ch);
@@ -258,7 +260,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $result . $fields_string . $fields
+                        'text' => $fields_string . $result
                     ];
                 }
             }
