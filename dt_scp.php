@@ -225,36 +225,36 @@ foreach ($events['events'] as $event) {
 
                     // $data_createBet = json_encode($data);
 
-                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
-                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-                    // $result = curl_exec($ch);
-                    // curl_close($ch);
-
-                    $ch = curl_init();
-
-                    curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create");
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt(
-                        $ch,
-                        CURLOPT_POSTFIELDS,
-                        "user_id=a&user_lineid=a&user_displayname=a&bet_text=a&value=a&bet_code=a"
-                    );
-
-                    // In real life you should use something like:
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, 
-                    //          http_build_query(array('postvar1' => 'value1')));
-
-                    // Receive server response ...
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, "user_id=a&user_lineid=a&user_displayname=a&bet_text=a&value=a&bet_code=a");
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                    $server_output = curl_exec($ch);
-
+                    $result = curl_exec($ch);
                     curl_close($ch);
+
+                    // $ch = curl_init();
+
+                    // curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create");
+                    // curl_setopt($ch, CURLOPT_POST, 1);
+                    // curl_setopt(
+                    //     $ch,
+                    //     CURLOPT_POSTFIELDS,
+                    //     "user_id=a&user_lineid=a&user_displayname=a&bet_text=a&value=a&bet_code=a"
+                    // );
+
+                    // // In real life you should use something like:
+                    // // curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                    // //          http_build_query(array('postvar1' => 'value1')));
+
+                    // // Receive server response ...
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                    // $server_output = curl_exec($ch);
+
+                    // curl_close($ch);
 
 
 
