@@ -212,10 +212,10 @@ foreach ($events['events'] as $event) {
                     curl_close($ch);
                     $resultData = json_decode($result, true);
                     $data = $resultData['data'];
-                    $user_id = $data['id'];
+                    $user = $data['id'];
                     $credit = $data['credit'];
                     $data = array(
-                        "user_id" => $user_id,
+                        "user_id" => $user,
                         "user_lineid" => $userID,
                         "user_displayname" => "a",
                         "bet_text" => "aaaa",
