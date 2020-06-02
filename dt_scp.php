@@ -1,11 +1,17 @@
 <?php
 
-$ch = curl_init("http://172.104.46.20/ssdev/dt/dashboard/auth");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "username=admin&password=admin");
-curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
-curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
-curl_exec($ch);
+$url = "http://172.104.46.20/ssdev/dt/dashboard/auth";
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
+	curl_setopt($ch, CURLOPT_POST,true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, "submit=Login&username=admin&password=admin&nextpage=/i4a/ams/amslogin.cfm?pageid=3286&nextparams=");
+	curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
+	curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");	
+	$html=curl_exec($ch);
+	echo $html;
+	exit;
 
 include('./config.php');
 require_once('./custom/dt_function.php');
