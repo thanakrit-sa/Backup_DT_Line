@@ -216,7 +216,7 @@ foreach ($events['events'] as $event) {
                     $credit = $data['credit'];
                     $data = array(
                         "user_id" => $user,
-                        "user_lineid" => $userID,
+                        "user_lineid" => "aaaaaaaa",
                         "user_displayname" => "a",
                         "bet_text" => "aaaa",
                         "value" => $bet_value,
