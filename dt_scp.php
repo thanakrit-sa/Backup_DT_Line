@@ -214,33 +214,57 @@ foreach ($events['events'] as $event) {
                     // $data = $resultData['data'];
                     // $user = $data['id'];
                     // $credit = $data['credit'];
-                    $data = array(
-                        "user_id" => "a",
-                        "user_lineid" => "a",
-                        "user_displayname" => "a",
-                        "bet_text" => "a",
-                        "value" => "a",
-                        "bet_code" => "a",
-                        "result" => "a",
-                        "income" => "a",
-                        "expense" => "a",
-                    );
+                    // $data = array(
+                    //     "user_id" => "a",
+                    //     "user_lineid" => "a",
+                    //     "user_displayname" => "a",
+                    //     "bet_text" => "a",
+                    //     "value" => "a",
+                    //     "bet_code" => "a",
+                    // );
 
-                    $data_createBet = json_encode($data);
+                    // $data_createBet = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
+                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+                    // $result = curl_exec($ch);
+                    // curl_close($ch);
+
+                    $data = array();
+                    $data = json_decode(file_get_contents('php://input'), true);
+
+
+                    $a = $data["user_id"];
+                    $b = $data["user_lineid"];
+                    $c = $data["user_displayname"];
+                    $d = $data["bet_text"];
+                    $e = $data["value"];
+                    $f = $data["bet_code"];
+
+
+                    $form_data = array('user_id' => $a, 'user_lineid' => $b, 'user_displayname' => $c, 'bet_text' => $d, 'value' => $e, 'bet_code' => $f);
+                    $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
+
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 75);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $form_data);
 
                     $result = curl_exec($ch);
                     curl_close($ch);
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $data_createBet . "\r\n" . $result
+                        'text' => $form_data . "\r\n" . $result
                     ];
                 }
             }
