@@ -214,21 +214,14 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $_POST['user_id'] = 'a';
-                    $_POST['user_lineid'] = 'a';
-                    $_POST['user_displayname'] = 'a';
-                    $_POST['bet_text'] = 'a';
-                    $_POST['value'] = '50.00';
-                    $_POST['bet_code'] = 'a';
-
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
                     $fields = array(
-                        'user_id' => $_POST['user_id'],
-                        'user_lineid' => $_POST['user_lineid'],
-                        'user_displayname' => $_POST['user_displayname'],
-                        'bet_text' => $_POST['bet_text'],
-                        'value' => $_POST['value'],
-                        'bet_code' => $_POST['bet_code']
+                        $_POST['user_id'] => 'a',
+                        $_POST['user_lineid'] => 'a',
+                        $_POST['user_displayname'] => 'a',
+                        $_POST['bet_text'] => 'a',
+                        $_POST['value'] => '50.00',
+                        $_POST['bet_code'] => 'a'
                     );
                     foreach ($fields as $key => $value) {
                         $fields_string .= $key . '=' . $value . '&';
