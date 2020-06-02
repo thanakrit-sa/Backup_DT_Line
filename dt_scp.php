@@ -228,7 +228,7 @@ foreach ($events['events'] as $event) {
                     $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, "user_id=a&user_lineid=a&user_displayname=a&bet_text=a&value=a&bet_code=a");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, "user_id=9&user_lineid=pattha&user_displayname=tarn&bet_text=test&value=50.00&bet_code=");
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
