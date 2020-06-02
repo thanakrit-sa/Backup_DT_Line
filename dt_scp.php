@@ -214,26 +214,46 @@ foreach ($events['events'] as $event) {
                     // $data = $resultData['data'];
                     // $user = $data['id'];
                     // $credit = $data['credit'];
-                    // $data = array(
-                    //     "user_id" => "a",
-                    //     "user_lineid" => "a",
-                    //     "user_displayname" => "a",
-                    //     "bet_text" => "a",
-                    //     "value" => "a",
-                    //     "bet_code" => "a",
-                    // );
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                    $fields = array(
+                        "user_id" => "a",
+                        "user_lineid" => "a",
+                        "user_displayname" => "a",
+                        "bet_text" => "a",
+                        "value" => "a",
+                        "bet_code" => "a",
+                    );
+
+                    foreach ($fields as $key => $value) {
+                        $fields_string .= $key . '=' . $value . '&';
+                    }
+                    rtrim($fields_string, '&');
+
+                    //open connection
+                    $ch = curl_init();
+
+                    //set the url, number of POST vars, POST data
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, count($fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+
+                    //execute post
+                    $result = curl_exec($ch);
+
+                    //close connection
+                    curl_close($ch);
 
                     // $data_createBet = json_encode($data);
 
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
+                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, "user_id=9&user_lineid=pattha&user_displayname=tarn&bet_text=test&value=50.00&bet_code=a");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, "user_id=9&user_lineid=pattha&user_displayname=tarn&bet_text=test&value=50.00&bet_code=a");
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                    $result = curl_exec($ch);
-                    curl_close($ch);
+                    // $result = curl_exec($ch);
+                    // curl_close($ch);
 
                     $messages = [
                         'type' => 'text',
