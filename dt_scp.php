@@ -215,12 +215,12 @@ foreach ($events['events'] as $event) {
                     $user = $data['id'];
                     $credit = $data['credit'];
                     $data = array(
-                        "user_id" => $user,
-                        "user_lineid" => $userID,
+                        "user_id" => "a",
+                        "user_lineid" => "a",
                         "user_displayname" => "a",
-                        "bet_text" => $bet_string,
-                        "value" => $bet_value,
-                        "bet_code" => null,
+                        "bet_text" => "a",
+                        "value" => "a",
+                        "bet_code" => "a",
                     );
 
                     $data_createBet = json_encode($data);

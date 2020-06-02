@@ -121,6 +121,9 @@ function checkbetstring($text)
         } else if ($bet_string == "step") {
 
             $bet_string = "การเล่น";
+        } else if ($bet_string == "@open") {
+
+            $bet_string = "เปิดรอบ";
         } else {
             $bet_string = false;
         }
