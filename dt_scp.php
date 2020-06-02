@@ -13,8 +13,8 @@ function reg_login($username, $password)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
-    curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
+    // curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
+    // curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     $result = curl_exec($ch);
