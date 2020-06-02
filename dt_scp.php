@@ -213,6 +213,7 @@ foreach ($events['events'] as $event) {
                     $resultData = json_decode($result, true);
                     $data = $resultData['data'];
                     $user_id = $data['id'];
+                    $credit = $data['credit'];
                     $data = array(
                         "user_id" => $user_id,
                         "user_lineid" => $userID,
@@ -224,19 +225,19 @@ foreach ($events['events'] as $event) {
 
                     $data_createBet = json_encode($data);
 
-                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
 
-                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                    // $result = curl_exec($ch);
-                    // curl_close($ch);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $data_createBet
+                        'text' => $data_createBet . "\r\n" . $result
                     ];
                 }
             }
