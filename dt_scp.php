@@ -218,7 +218,7 @@ foreach ($events['events'] as $event) {
                     $_POST['user_lineid'] = 'a';
                     $_POST['user_displayname'] = 'a';
                     $_POST['bet_text'] = 'a';
-                    $_POST['value'] = 'a';
+                    $_POST['value'] = '50.00';
                     $_POST['bet_code'] = 'a';
 
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
