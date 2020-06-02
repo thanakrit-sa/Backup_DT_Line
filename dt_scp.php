@@ -235,36 +235,32 @@ foreach ($events['events'] as $event) {
                     // $result = curl_exec($ch);
                     // curl_close($ch);
 
-                    $data = array();
-                    $data = json_decode(file_get_contents('php://input'), true);
-
-
-                    $a = $data["user_id"];
-                    $b = $data["user_lineid"];
-                    $c = $data["user_displayname"];
-                    $d = $data["bet_text"];
-                    $e = $data["value"];
-                    $f = $data["bet_code"];
-
-
-                    $form_data = array('user_id' => $a, 'user_lineid' => $b, 'user_displayname' => $c, 'bet_text' => $d, 'value' => $e, 'bet_code' => $f);
-                    $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
-
-
                     $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_TIMEOUT, 75);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $form_data);
 
-                    $result = curl_exec($ch);
+                    curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create");
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt(
+                        $ch,
+                        CURLOPT_POSTFIELDS,
+                        "user_id=a&user_lineid=a&user_displayname=a&bet_text=a&value=a&bet_code=a"
+                    );
+
+                    // In real life you should use something like:
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                    //          http_build_query(array('postvar1' => 'value1')));
+
+                    // Receive server response ...
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                    $server_output = curl_exec($ch);
+
                     curl_close($ch);
+
+
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $form_data . "\r\n" . $result
+                        'text' => $result
                     ];
                 }
             }
