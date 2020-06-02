@@ -272,4 +272,3 @@ foreach ($events['events'] as $event) {
 
 
 // echo "OK";
-}
