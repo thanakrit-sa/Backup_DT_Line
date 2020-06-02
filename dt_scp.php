@@ -214,21 +214,21 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $post['user_id'] = 'a';
-                    $post['user_lineid'] = 'a';
-                    $post['user_displayname'] = 'a';
-                    $post['bet_text'] = 'a';
-                    $post['value'] = 'a';
-                    $post['bet_code'] = 'a';
+                    $_POST['user_id'] = 'a';
+                    $_POST['user_lineid'] = 'a';
+                    $_POST['user_displayname'] = 'a';
+                    $_POST['bet_text'] = 'a';
+                    $_POST['value'] = 'a';
+                    $_POST['bet_code'] = 'a';
 
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
                     $fields = array(
-                        'user_id' => urlencode($post['user_id']),
-                        'user_lineid' => urlencode($post['user_lineid']),
-                        'user_displayname' => urlencode($post['user_displayname']),
-                        'bet_text' => urlencode($post['bet_text']),
-                        'value' => urlencode($post['value']),
-                        'bet_code' => urlencode($post['bet_code'])
+                        'user_id' => urlencode($_POST['user_id']),
+                        'user_lineid' => urlencode($_POST['user_lineid']),
+                        'user_displayname' => urlencode($_POST['user_displayname']),
+                        'bet_text' => urlencode($_POST['bet_text']),
+                        'value' => urlencode($_POST['value']),
+                        'bet_code' => urlencode($_POST['bet_code'])
                     );
                     foreach ($fields as $key => $value) {
                         $fields_string .= $key . '=' . $value . '&';
