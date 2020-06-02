@@ -1,26 +1,26 @@
 <?php
-$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+// $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
 
-function reg_login($username, $password)
-{
-    global $url;
-    $data = "username=admin&password=admin";
+// function reg_login($username, $password)
+// {
+//     global $url;
+//     $data = "username=admin&password=admin";
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_URL, $url);
-    // curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
-    // curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//     $ch = curl_init();
+//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//     curl_setopt($ch, CURLOPT_HEADER, 0);
+//     curl_setopt($ch, CURLOPT_POST, 1);
+//     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//     curl_setopt($ch, CURLOPT_URL, $url);
+//     // curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
+//     // curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    $result = curl_exec($ch);
-    curl_close($ch);
-    return $result;
-}
+//     $result = curl_exec($ch);
+//     curl_close($ch);
+//     return $result;
+// }
 
 
 
@@ -129,66 +129,44 @@ foreach ($events['events'] as $event) {
                     'text' => "\" วิธีการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส = เสือ" . "\r\n" . "พิมพ์ : ม = มังกร" . "\r\n" . "พิมพ์ : ค = คู่" . "\r\n" . "พิมพ์ : สม = เสมอ" . "\r\n" . "พิมพ์ : สคู่ = เสือเลขคู่" . "\r\n" . "พิมพ์ : สคี่ = เสือเลขคี่" . "\r\n" . "พิมพ์ : มคู่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : มคี่ = มังกรเลขคู่" . "\r\n" . "พิมพ์ : สดำ = เสือดำ" . "\r\n" . "พิมพ์ : สแดง = เสือแดง" . "\r\n" . "พิมพ์ : มดำ = มังกรดำ" . "\r\n" . "พิมพ์ : มแดง = มังกรแดง" . "\r\n" . "\r\n" . "\" รูปแบบการเดิมพัน \"" . "\r\n" . "พิมพ์ : ส1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท" . "\r\n" . "\r\n" . "\" การเดิมพันแบบซ้อนทับ \"" . "\r\n" . "พิมพ์ : ส1000/ม5000/สดำ1000" . "\r\n" . "เท่ากับ : แทงเสือ1000บาท แทงมังกร5000บาท แทงเสือดำ1000บาท"
                 ];
             } else if ($bet_string == "สมัคร") {
-                $data = array(
-                    "user_displayname" => "a",
-                    "fullname" => "a",
-                    "user_lineid" => "a",
-                );
-
-                $data_string = json_encode($data);
-
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/register');
-
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
                 $result = curl_exec($ch);
                 curl_close($ch);
+                $resultData = json_decode($result, true);
+                $data = $resultData['data'];
+                $line_id = $data['user_lineid'];
+                if ($line_id == $userID) {
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
+                    ];
+                } else {
+                    $data = array(
+                        "user_displayname" => $user_displayname,
+                        "fullname" => $user_displayname,
+                        "user_lineid" => $userID,
+                    );
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n" . $result
-                ];
-                // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
-                // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-                // $result = curl_exec($ch);
-                // curl_close($ch);
-                // $resultData = json_decode($result, true);
-                // $data = $resultData['data'];
-                // $line_id = $data['user_lineid'];
-                // if ($line_id == $userID) {
-                //     $messages = [
-                //         'type' => 'text',
-                //         'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "😇 ชื่อผู้ใช้นี้เป็นสมาชิกอยู่แล้ว"
-                //     ];
-                // } else {
-                //     $data = array(
-                //         "user_displayname" => $user_displayname,
-                //         "fullname" => $user_displayname,
-                //         "user_lineid" => $userID,
-                //     );
+                    $data_register = json_encode($data);
 
-                //     $data_string = json_encode($data);
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
 
-                //     $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_register);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-                //     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-                //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                //     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
 
-                //     $result = curl_exec($ch);
-                //     curl_close($ch);
-
-                //     $messages = [
-                //         'type' => 'text',
-                //         'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
-                //     ];
-                // }
+                    $messages = [
+                        'type' => 'text',
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "✅ ทำการลงทะเบียนสำเร็จ ✅" . "\r\n"
+                    ];
+                }
             } else {
                 if (!$bet_string) {
                     $messages = [
@@ -226,6 +204,26 @@ foreach ($events['events'] as $event) {
                         ]
                     ];
                 } else {
+                    $data = array(
+                        "user_id" => $user_displayname,
+                        "user_lineid" => $userID,
+                        "user_displayname" => $user_displayname,
+                        "bet_text" => $userID,
+                        "value" => $userID,
+                        "bet_code" => $userID,
+                    );
+
+                    $data_createBet = json_encode($data);
+
+                    // $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/register');
+
+                    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_createBet);
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+                    // $result = curl_exec($ch);
+                    // curl_close($ch);
 
                     $messages = [
                         'type' => 'text',
