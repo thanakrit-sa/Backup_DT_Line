@@ -214,73 +214,25 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    // $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-                    // $fields = array(
-                    //     'user_id' => "a",
-                    //     'user_lineid' => "a",
-                    //     'user_displayname' => "a",
-                    //     'bet_text' => "a",
-                    //     'value' => "50.00",
-                    //     'bet_code' => "a"
-                    // );
-                    // foreach ($fields as $key => $value) {
-                    //     $fields_string .= $key . '=' . $value . '&';
-                    // }
-                    // rtrim($fields_string, '&');
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create'; // กำหนด URl ของเว็บไวต์ B
+                    $request = 'user_id=9user_lineid=guest&user_displayname=tarn&bet_text=test&value=50.00&bet_code=9'; // กำหนด HTTP Request โดยระบุ username=guest และ password=เguest (รูปแบบเหมือนการส่งค่า $_GET แต่ข้างหน้าข้อความไม่มีเครื่องหมาย ?)
 
-                    // $ch = curl_init();
-                    // curl_setopt($ch, CURLOPT_URL, $url);
-                    // curl_setopt($ch, CURLOPT_POST, count($fields));
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-                    // $result = curl_exec($ch);
-                    // curl_close($ch);
-                    // //check the result
-                    // var_dump($result);
+                    $ch = curl_init(); // เริ่มต้นใช้งาน cURL
 
-                    $post_data['user_id'] = '9';
-                    $post_data['user_lineid'] = 'pattha';
-                    $post_data['user_displayname'] = 'tarn';
-                    $post_data['bet_text'] = 'test';
-                    $post_data['value'] = '50.00';
-                    $post_data['bet_code'] = '';
+                    curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
+                    curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
+                    curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
 
-                    //traverse array and prepare data for posting (key1=value1)
-                    foreach ($post_data as $key => $value) {
-                        $post_items[] = $key . '=' . $value;
-                    }
+                    $response = curl_exec($ch); // ประมวลผล cURL
+                    curl_close($ch); // ปิดการใช้งาน cURL
 
-                    //create the final string to be posted using implode()
-                    $post_string = implode('&', $post_items);
-
-                    //create cURL connection
-                    $curl_connection =
-                        curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create');
-
-                    //set options
-                    curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-                    curl_setopt(
-                        $curl_connection,
-                        CURLOPT_USERAGENT,
-                        "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)"
-                    );
-                    curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
-                    curl_setopt($curl_connection, CURLOPT_FOLLOWLOCATION, 1);
-
-                    //set data to be posted
-                    curl_setopt($curl_connection, CURLOPT_POSTFIELDS, $post_string);
-
-                    //perform our request
-                    $result = curl_exec($curl_connection);
-
-                    //show information regarding the request
-                    print_r(curl_getinfo($curl_connection));
-                    echo curl_errno($curl_connection) . '-' .
-                        curl_error($curl_connection);
+                    echo $response; // แสดงผลการทำงาน
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $result
+                        'text' => $response
                     ];
                 }
             }
