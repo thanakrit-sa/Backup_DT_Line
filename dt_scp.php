@@ -220,7 +220,7 @@ foreach ($events['events'] as $event) {
                         "user_displayname" => "a",
                         "bet_text" => "aaaa",
                         "value" => $bet_value,
-                        "bet_code" => "null",
+                        "bet_code" => null,
                     );
 
                     $data_createBet = json_encode($data);
