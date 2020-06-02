@@ -258,7 +258,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $result
+                        'text' => $result . $fields_string . $fields
                     ];
                 }
             }
