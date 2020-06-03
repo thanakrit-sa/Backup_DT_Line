@@ -221,19 +221,19 @@ foreach ($events['events'] as $event) {
                         "bet_text" => "test",
                         "value" => 50.00
                     );
-                    $string = http_build_query($data);
+                    // $string = http_build_query($data);
 
                     $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
                     // $data = array("first_name" => "First name", "last_name" => "last name", "email" => "email@gmail.com", "addresses" => array("address1" => "some address", "city" => "city", "country" => "CA", "first_name" =>  "Mother", "last_name" =>  "Lastnameson", "phone" => "555-1212", "province" => "ON", "zip" => "123 ABC"));
 
-                    // $postdata = json_encode($data);
+                    $postdata = json_encode($data);
 
                     $ch = curl_init($url);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
                     curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $string);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
