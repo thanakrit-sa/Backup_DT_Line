@@ -215,12 +215,12 @@ foreach ($events['events'] as $event) {
                     $user_id = $data['id'];
 
                     $data = array(
-                        "user_id" => "a",
-                        "user_lineid" => "a",
-                        "user_displayname" => "a",
-                        "bet_text" => "a",
-                        "value" => "a",
-                        "bet_code" => "a"
+                        "user_id" => 4,
+                        "user_lineid" => "test1234",
+                        "user_displayname" => "tarn",
+                        "bet_text" => "test",
+                        "value" => 50.00,
+                        "bet_code" => null
                     );
                     $string = http_build_query($data);
 
