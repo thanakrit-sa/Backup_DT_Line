@@ -214,20 +214,20 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $post['user_id'] = "4";
-                    $post['user_lineid'] = "test1234";
-                    $post['user_displayname'] = "tarn";
-                    $post['bet_text'] = "test";
-                    $post['value'] = "50.00";
-                    $post['bet_code'] = "null";
+                    $_POST['user_id'] = "4";
+                    $_POST['user_lineid'] = "test1234";
+                    $_POST['user_displayname'] = "tarn";
+                    $_POST['bet_text'] = "test";
+                    $_POST['value'] = "50.00";
+                    $_POST['bet_code'] = "null";
 
                     $data = array(
-                        "user_id" => $post['user_id'],
-                        "user_lineid" => $post['user_lineid'],
-                        "user_displayname" => $post['user_displayname'],
-                        "bet_text" => $post['bet_text'],
-                        "value" => $post['value'],
-                        "bet_code" => $post['bet_code']
+                        "user_id" => $_POST['user_id'],
+                        "user_lineid" => $_POST['user_lineid'],
+                        "user_displayname" => $_POST['user_displayname'],
+                        "bet_text" => $_POST['bet_text'],
+                        "value" => $_POST['value'],
+                        "bet_code" => $_POST['bet_code']
                     );
                     // $string = http_build_query($data);
 
