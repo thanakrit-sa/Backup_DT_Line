@@ -259,7 +259,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $resp
+                        'text' => $postData . $resp
                     ];
                 }
             }
