@@ -214,25 +214,26 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create'; // กำหนด URl ของเว็บไวต์ B
-                    $request = 'user_id=9user_lineid=guest&user_displayname=tarn&bet_text=test&value=50.00&bet_code=9'; // กำหนด HTTP Request โดยระบุ username=guest และ password=เguest (รูปแบบเหมือนการส่งค่า $_GET แต่ข้างหน้าข้อความไม่มีเครื่องหมาย ?)
+                    $data = array(
+                        "user_id" => "a",
+                        "user_lineid" => "a",
+                        "user_displayname" => "a",
+                        "bet_text" => "a",
+                        "value" => "a",
+                        "bet_code" => "a"
+                    );
+                    $string = http_build_query($data);
 
-                    $ch = curl_init(); // เริ่มต้นใช้งาน cURL
-
-                    curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
-                    curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
-                    curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
-
-                    $response = curl_exec($ch); // ประมวลผล cURL
-                    curl_close($ch); // ปิดการใช้งาน cURL
-
-                    echo $response; // แสดงผลการทำงาน
+                    $ch = curl_init("http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create");
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $string);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $response
+                        'text' => $string . $result
                     ];
                 }
             }
