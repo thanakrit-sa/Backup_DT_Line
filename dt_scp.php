@@ -214,12 +214,20 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
+                    $post['user_id'] = "4";
+                    $post['user_lineid'] = "test1234";
+                    $post['user_displayname'] = "tarn";
+                    $post['bet_text'] = "test";
+                    $post['value'] = "50.00";
+                    $post['bet_code'] = "null";
+
                     $data = array(
-                        "user_id" => 4,
-                        "user_lineid" => "test1234",
-                        "user_displayname" => "tarn",
-                        "bet_text" => "test",
-                        "value" => 50.00
+                        "user_id" => $post['user_id'],
+                        "user_lineid" => $post['user_lineid'],
+                        "user_displayname" => $post['user_displayname'],
+                        "bet_text" => $post['bet_text'],
+                        "value" => $post['value'],
+                        "bet_code" => $post['bet_code']
                     );
                     // $string = http_build_query($data);
 
@@ -232,10 +240,7 @@ foreach ($events['events'] as $event) {
                     }
 
                     $postData = rtrim($postData, "&");
-                    //$postData = implode('&', $data);
-
-
-
+                    
                     // Get cURL resource
                     $curl = curl_init();
 
