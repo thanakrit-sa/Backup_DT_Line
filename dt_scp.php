@@ -219,8 +219,7 @@ foreach ($events['events'] as $event) {
                         "user_lineid" => "test1234",
                         "user_displayname" => "tarn",
                         "bet_text" => "test",
-                        "value" => 50.00,
-                        "bet_code" => "null"
+                        "value" => 50.00
                     );
                     $string = http_build_query($data);
 
