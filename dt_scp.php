@@ -233,13 +233,15 @@ foreach ($events['events'] as $event) {
 
                     $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
-                    $postData = "";
+                    // $postData = "";
 
-                    foreach ($data as $key => $val) {
-                        $postData .= $key . "=" . $val . "&";
-                    }
+                    // foreach ($data as $key => $val) {
+                    //     $postData .= $key . "=" . $val . "&";
+                    // }
 
-                    $postData = rtrim($postData, "&");
+                    // $postData = rtrim($postData, "&");
+                    $postData = json_decode($data,true);
+
                     
                     // Get cURL resource
                     $curl = curl_init();
