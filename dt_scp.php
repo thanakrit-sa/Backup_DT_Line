@@ -227,8 +227,7 @@ foreach ($events['events'] as $event) {
 
                     // $data = array("first_name" => "First name", "last_name" => "last name", "email" => "email@gmail.com", "addresses" => array("address1" => "some address", "city" => "city", "country" => "CA", "first_name" =>  "Mother", "last_name" =>  "Lastnameson", "phone" => "555-1212", "province" => "ON", "zip" => "123 ABC"));
 
-                    $postdata = json_encode($data);
-
+                    $postdata = json_encode(array("bet_log" =>$data));
                     $ch = curl_init($url);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
