@@ -225,24 +225,36 @@ foreach ($events['events'] as $event) {
 
                     $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
-                    // $data = array("first_name" => "First name", "last_name" => "last name", "email" => "email@gmail.com", "addresses" => array("address1" => "some address", "city" => "city", "country" => "CA", "first_name" =>  "Mother", "last_name" =>  "Lastnameson", "phone" => "555-1212", "province" => "ON", "zip" => "123 ABC"));
+                    $postData = "";
 
-                    $postdata = json_encode(array("bet_log" =>$data));
-                    $ch = curl_init($url);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                    $result = curl_exec($ch);
-                    curl_close($ch);
-                    print_r($result);
+                    foreach ($data as $key => $val) {
+                        $postData .= $key . "=" . $val . "&";
+                    }
+
+                    $postData = rtrim($postData, "&");
+                    //$postData = implode('&', $data);
+
+
+
+                    // Get cURL resource
+                    $curl = curl_init();
+
+                    curl_setopt($curl, CURLOPT_URL, $url);
+                    curl_setopt($curl, CURLOPT_POST, 1);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+
+                    // Send the request & save response to $resp
+                    $resp = curl_exec($curl);
+
+                    print_r($resp);
+
+                    // Close request to clear up some resources
+                    curl_close($curl);
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $string . $result
+                        'text' => $postData . $resp
                     ];
                 }
             }
