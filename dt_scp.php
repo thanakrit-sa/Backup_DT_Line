@@ -135,15 +135,16 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 $resultData = json_decode($result, true);
                 $i = 0;
-                for ($i; $i <= sizeof($resultData['msg']);$i++) {
-                    $messages = [
-                        'type' => 'text',
-                        'text' => " ชื่อผู้ใช้งาน : " . $i
-                    ];
-                }
+                $ans = "";
+                for ($i; $i <= sizeof($resultData['msg']); $i++) {
+                    $ans = $ans . $i;
+                };
+                $messages = [
+                    'type' => 'text',
+                    'text' => " ชื่อผู้ใช้งาน : " . $ans
+                ];
 
 
-                
 
 
                 // $messages = [
