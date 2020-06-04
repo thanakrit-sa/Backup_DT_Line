@@ -322,7 +322,7 @@ foreach ($events['events'] as $event) {
 
                     echo $response;
 
-                    $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value . "\r\n" . $request;
+                    $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
                 }
 
 
