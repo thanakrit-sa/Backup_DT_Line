@@ -140,7 +140,7 @@ foreach ($events['events'] as $event) {
                     $id[] = $data['id'];
                 };
                 for ($i; $i <= sizeof($resultData['msg']); $i++) {
-                    $ans = $ans . $id[$i];
+                    $ans = $ans . $id[$i] . "\n";
                 };
                 $messages = [
                     'type' => 'text',
