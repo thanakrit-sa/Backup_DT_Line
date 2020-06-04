@@ -78,36 +78,47 @@ function checkbetstring($text,$code)
         } else if ($bet_string == "ม") {
 
             $bet_string = "มังกร";
+            $code = "/200";
         } else if ($bet_string == "ค") {
 
             $bet_string = "คู่";
+            $code = "/300";
         } else if ($bet_string == "สม") {
 
             $bet_string = "เสมอ";
+            $code = "/400";
         } else if ($bet_string == "สคู่") {
 
             $bet_string = "เสือเลขคู่";
+            $code = "/110";
         } else if ($bet_string == "สคี่") {
 
             $bet_string = "เสือเลขคี่";
+            $code = "/120";
         } else if ($bet_string == "มคู่") {
 
             $bet_string = "มังกรคู่";
+            $code = "/210";
         } else if ($bet_string == "มคี่") {
 
             $bet_string = "มังกรคี่";
+            $code = "/220";
         } else if ($bet_string == "สดำ") {
 
             $bet_string = "เสือดำ";
+            $code = "/130";
         } else if ($bet_string == "สแดง") {
 
             $bet_string = "เสือแดง";
+            $code = "/140";
         } else if ($bet_string == "มดำ") {
 
             $bet_string = "มังกรดำ";
+            $code = "/230";
         } else if ($bet_string == "มแดง") {
 
             $bet_string = "มังกรแดง";
+            $code = "/240";
         } else if ($bet_string == "info") {
 
             $bet_string = "ข้อมูล";

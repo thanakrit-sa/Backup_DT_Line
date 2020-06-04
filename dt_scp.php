@@ -239,26 +239,23 @@ foreach ($events['events'] as $event) {
                     $request = rtrim($request, "&");
                     
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-                    // $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
 
-                    $ch = curl_init(); // เริ่มต้นใช้งาน cURL
+                    $ch = curl_init(); 
 
-                    curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
-                    curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
-                    curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
+                    curl_setopt($ch, CURLOPT_URL, $url); 
+                    curl_setopt($ch, CURLOPT_POST, 1); 
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); 
+                    curl_setopt($ch, CURLOPT_HEADER, 0); 
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 
-                    $response = curl_exec($ch); // ประมวลผล cURL
-                    curl_close($ch); // ปิดการใช้งาน cURL
+                    $response = curl_exec($ch);
+                    curl_close($ch);
 
-                    echo $response; // แสดงผลการทำงาน
-
-                    // Send t
+                    echo $response;
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $request . $response
+                        'text' => "ชื่อผู้ใช้งาน" . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . "บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code 
                     ];
                 }
             }
