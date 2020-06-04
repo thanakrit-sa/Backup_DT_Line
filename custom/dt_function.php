@@ -128,6 +128,9 @@ function checkbetstring($text,$code)
         } else if ($bet_string == "x") {
 
             $bet_string = "ยกเลิก";
+        } else if ($bet_string == "c") {
+
+            $bet_string = "ประวัติ";
         } else if ($bet_string == "play") {
 
             $bet_string = "สมัคร";

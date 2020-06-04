@@ -126,6 +126,20 @@ foreach ($events['events'] as $event) {
                         ]
                     ];
                 }
+            } else if ($bet_string == "ประวัติ") {
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet/logbet_lineid/' . $userID);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                $result = curl_exec($ch);
+                curl_close($ch);
+                $resultData = json_decode($result, true);
+
+                $messages = [
+                    'type' => 'text',
+                    'text' => $result
+                ];
+
             } else if ($bet_string == "ยกเลิก") {
                 $data = array(
                     "user_lineid" => $userID
