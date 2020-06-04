@@ -75,7 +75,7 @@ foreach ($events['events'] as $event) {
 
             $bet_type = "single";
 
-            $bet_string = checkbetstring($text,$code);
+            $bet_string = checkbetstring($text, $code);
             $bet_value = checkbetvalue($text);
             $code = explode("/", $bet_string);
             $bet_text = $code[0];
@@ -217,8 +217,6 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                  
-
                     $data = array(
                         "user_id" => $user_id,
                         "user_lineid" => $userID,
@@ -228,8 +226,6 @@ foreach ($events['events'] as $event) {
                         "bet_code" => $bet_code
                     );
 
-                    // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
-
                     $request = "";
 
                     foreach ($data as $key => $val) {
@@ -237,16 +233,16 @@ foreach ($events['events'] as $event) {
                     }
 
                     $request = rtrim($request, "&");
-                    
+
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
 
-                    $ch = curl_init(); 
+                    $ch = curl_init();
 
-                    curl_setopt($ch, CURLOPT_URL, $url); 
-                    curl_setopt($ch, CURLOPT_POST, 1); 
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); 
-                    curl_setopt($ch, CURLOPT_HEADER, 0); 
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
                     $response = curl_exec($ch);
                     curl_close($ch);
@@ -255,7 +251,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code 
+                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
                     ];
                 }
             }
@@ -268,8 +264,12 @@ foreach ($events['events'] as $event) {
             foreach ($arrKeywords as $element) {
 
                 $i++;
-                $bet_string = checkbetstring($element,$code);
+                $bet_string = checkbetstring($element, $code);
                 $bet_value = checkbetvalue($element);
+                $code = explode("/", $bet_string);
+                $bet_text = $code[0];
+                $bet_code = $code[1];
+
 
                 // echo $bet_string;
                 if (!$bet_string) {
@@ -280,8 +280,49 @@ foreach ($events['events'] as $event) {
 
                     $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
                 } else {
+                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    $resultData = json_decode($result, true);
+                    $data = $resultData['data'];
+                    $user_id = $data['id'];
 
-                    $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value;
+                    $data = array(
+                        "user_id" => $user_id,
+                        "user_lineid" => $userID,
+                        "user_displayname" => $user_displayname,
+                        "bet_text" => $bet_text,
+                        "value" => $bet_value,
+                        "bet_code" => $bet_code
+                    );
+
+                    $request = "";
+
+                    foreach ($data as $key => $val) {
+                        $request .= $key . "=" . $val . "&";
+                    }
+
+                    $request = rtrim($request, "&");
+
+                    // $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+
+                    // $ch = curl_init();
+
+                    // curl_setopt($ch, CURLOPT_URL, $url);
+                    // curl_setopt($ch, CURLOPT_POST, 1);
+                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+                    // curl_setopt($ch, CURLOPT_HEADER, 0);
+                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                    // $response = curl_exec($ch);
+                    // curl_close($ch);
+
+                    // echo $response;
+
+                    $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value . "\r\n" . $request;
                 }
 
 
