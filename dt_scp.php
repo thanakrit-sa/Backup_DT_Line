@@ -137,14 +137,15 @@ foreach ($events['events'] as $event) {
                 $i = 0;
                 $ans = "";
                 foreach ($resultData['msg'] as $data) {
-                    $id[] = $data['id'];
+                    $bet_text[] = $data['bet_text'];
+                    $bet_value[] = $data['value'];
                 };
                 for ($i; $i <= sizeof($resultData['msg']); $i++) {
-                    $ans = $ans . $id[$i] . "\n";
+                    $ans = $ans . $bet_text[$i] . $bet_value[$i]. "\n";
                 };
                 $messages = [
                     'type' => 'text',
-                    'text' => " ชื่อผู้ใช้งาน : " . $ans
+                    'text' => " ชื่อผู้ใช้งาน : " . "\r\n" . $ans
                 ];
 
 
