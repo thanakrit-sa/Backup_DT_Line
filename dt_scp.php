@@ -231,9 +231,9 @@ foreach ($events['events'] as $event) {
                     // );
 
                     // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
-
+                        $id - 9;
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-                    $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
+                    $request = 'user_id=$id&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
 
                     $ch = curl_init(); // เริ่มต้นใช้งาน cURL
 
