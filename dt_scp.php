@@ -272,7 +272,7 @@ foreach ($events['events'] as $event) {
 
 
                 // echo $bet_string;
-                if (!$bet_string) {
+                if (!$bet_text) {
 
                     $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
                 } else if (!is_numeric($bet_value)) {
