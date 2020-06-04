@@ -142,7 +142,7 @@ foreach ($events['events'] as $event) {
                 };
                 $messages = [
                     'type' => 'text',
-                    'text' => $resultData['msg']
+                    'text' => $data
                 ];
             } else if ($bet_string == "ยกเลิก") {
                 $data = array(
