@@ -219,7 +219,7 @@ foreach ($events['events'] as $event) {
                     $data = array(
                         "user_id" => $user_id,
                         "user_lineid" => $user_id,
-                        "user_displayname" => $user_displayname,
+                        "user_displayname" => "Spie",
                         "bet_text" => $bet_string,
                         "value" => $bet_value,
                         "bet_code" => ""
