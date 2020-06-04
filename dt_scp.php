@@ -1,33 +1,31 @@
 <?php
-$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+// $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
-$data = array(
-    "username" => "admin",
-    "password" => "admin",
-);
+// $data = array(
+//     "username" => "admin",
+//     "password" => "admin",
+// );
 
-$request = "";
+// $request = "";
 
-foreach ($data as $key => $val) {
-    $request .= $key . "=" . $val . "&";
-}
+// foreach ($data as $key => $val) {
+//     $request .= $key . "=" . $val . "&";
+// }
 
-$request = rtrim($request, "&");
+// $request = rtrim($request, "&");
 
-// $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+// $ch = curl_init();
 
-$ch = curl_init();
+// curl_setopt($ch, CURLOPT_URL, $url);
+// curl_setopt($ch, CURLOPT_POST, 1);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+// curl_setopt($ch, CURLOPT_HEADER, 0);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// $response = curl_exec($ch);
+// curl_close($ch);
 
-$response = curl_exec($ch);
-curl_close($ch);
-
-echo $response;
+// echo $response;
 
 
 
@@ -141,7 +139,7 @@ foreach ($events['events'] as $event) {
 
                 $request = rtrim($request, "&");
 
-                $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_lineid';
 
                 $ch = curl_init();
 
@@ -157,7 +155,7 @@ foreach ($events['events'] as $event) {
                 echo $response;
                 $messages = [
                     'type' => 'text',
-                    'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
+                    'text' => $response
                 ];
             } else if ($bet_string == "การเล่น") {
                 $messages = [
