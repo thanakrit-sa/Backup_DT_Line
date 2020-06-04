@@ -1,10 +1,10 @@
 <?php
-// $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
-// $data = array(
-//     "username" => "admin",
-//     "password" => "admin",
-// );
+$data = array(
+    "username" => "admin",
+    "password" => "admin",
+);
 
 // $request = "";
 
@@ -14,18 +14,20 @@
 
 // $request = rtrim($request, "&");
 
-// $ch = curl_init();
+$request = json_encode($data);
 
-// curl_setopt($ch, CURLOPT_URL, $url);
-// curl_setopt($ch, CURLOPT_POST, 1);
-// curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-// curl_setopt($ch, CURLOPT_HEADER, 0);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$ch = curl_init();
 
-// $response = curl_exec($ch);
-// curl_close($ch);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-// echo $response;
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
 
 
 
@@ -141,29 +143,13 @@ foreach ($events['events'] as $event) {
                     $name[] = $data['bet_text'];
                     $value[] = $data['value'];
                 };
-                for ($i; $i <= sizeof($resultData['msg'])-1; $i++) {
+                for ($i; $i <= sizeof($resultData['msg']) - 1; $i++) {
                     $ans = $ans . "#" . $num++ . " แทง => " . $name[$i] . " จำนวน " . $value[$i] . "\n";
                 };
                 $messages = [
                     'type' => 'text',
                     'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "💾 ประวัติการเดิมพัน" . "\r\n" . $ans
                 ];
-
-
-
-
-                // $messages = [
-                //     'type' => 'text',
-                //     'text' => $resultData
-                // ];
-
-                // foreach (count($resultData['msg'])) {
-
-                // }
-                // $messages = [
-                //     'type' => 'text',
-                //     'text' => $data['id']
-                // ];
             } else if ($bet_string == "ยกเลิก") {
                 $data = array(
                     "user_lineid" => $userID
@@ -406,7 +392,7 @@ foreach ($events['events'] as $event) {
             ];
         }
     }
-
+}
 
 
 
@@ -429,8 +415,3 @@ foreach ($events['events'] as $event) {
     $result = curl_exec($ch);
     curl_close($ch);
 
-    // echo $result . "\r\n";
-
-
-    // echo "OK";
-}
