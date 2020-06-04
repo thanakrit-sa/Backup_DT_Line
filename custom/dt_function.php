@@ -74,7 +74,7 @@ function checkbetstring($text,$code)
         if ($bet_string == "ส") {
 
             $bet_string = "เสือ";
-            $code = 100;
+            $code = "/100";
         } else if ($bet_string == "ม") {
 
             $bet_string = "มังกร";
