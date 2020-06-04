@@ -214,9 +214,9 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $_POST['user_id'] = "4";
-                    $_POST['user_lineid'] = "test1234";
-                    $_POST['user_displayname'] = "tarn";
+                    $_POST['user_id'] = $user_id;
+                    $_POST['user_lineid'] = $userID;
+                    $_POST['user_displayname'] = $user_displayname;
                     $_POST['bet_text'] = "test";
                     $_POST['value'] = "50.00";
                     $_POST['bet_code'] = "null";
