@@ -139,7 +139,7 @@ foreach ($events['events'] as $event) {
 
                 $request = rtrim($request, "&");
 
-                $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_lineid';
+                $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/remove_lineid';
 
                 $ch = curl_init();
 
@@ -155,7 +155,7 @@ foreach ($events['events'] as $event) {
                 echo $response;
                 $messages = [
                     'type' => 'text',
-                    'text' => $response
+                    'text' => $request . $response
                 ];
             } else if ($bet_string == "การเล่น") {
                 $messages = [
