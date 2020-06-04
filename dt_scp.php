@@ -307,20 +307,20 @@ foreach ($events['events'] as $event) {
 
                     $request = rtrim($request, "&");
 
-                    // $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
 
-                    // $ch = curl_init();
+                    $ch = curl_init();
 
-                    // curl_setopt($ch, CURLOPT_URL, $url);
-                    // curl_setopt($ch, CURLOPT_POST, 1);
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-                    // curl_setopt($ch, CURLOPT_HEADER, 0);
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-                    // $response = curl_exec($ch);
-                    // curl_close($ch);
+                    $response = curl_exec($ch);
+                    curl_close($ch);
 
-                    // echo $response;
+                    echo $response;
 
                     $element_reponse = '# ' . $i . ' แทง > ' . $bet_string . " จำนวน " . $bet_value . "\r\n" . $request;
                 }
