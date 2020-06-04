@@ -1,26 +1,33 @@
 <?php
-// $url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
+$url = "http://e-sport.in.th/ssdev/dt/dashboard/auth";
 
+$data = array(
+    "username" => "admin",
+    "password" => "admin",
+);
 
-// function reg_login($username, $password)
-// {
-//     global $url;
-//     $data = "username=admin&password=admin";
+$request = "";
 
-//     $ch = curl_init();
-//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-//     curl_setopt($ch, CURLOPT_HEADER, 0);
-//     curl_setopt($ch, CURLOPT_POST, 1);
-//     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-//     curl_setopt($ch, CURLOPT_URL, $url);
-//     // curl_setopt($ch, CURLOPT_COOKIEJAR, "file.txt");
-//     // curl_setopt($ch, CURLOPT_COOKIEFILE, "file.txt");
-//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+foreach ($data as $key => $val) {
+    $request .= $key . "=" . $val . "&";
+}
 
-//     $result = curl_exec($ch);
-//     curl_close($ch);
-//     return $result;
-// }
+$request = rtrim($request, "&");
+
+// $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
 
 
 
@@ -87,7 +94,7 @@ foreach ($events['events'] as $event) {
                     'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
                 ];
             } else if ($bet_string == "คงเหลือ") {
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
@@ -122,6 +129,32 @@ foreach ($events['events'] as $event) {
                     ];
                 }
             } else if ($bet_string == "ยกเลิก") {
+                $data = array(
+                    "user_lineid" => $userID
+                );
+
+                $request = "";
+
+                foreach ($data as $key => $val) {
+                    $request .= $key . "=" . $val . "&";
+                }
+
+                $request = rtrim($request, "&");
+
+                $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                echo $response;
                 $messages = [
                     'type' => 'text',
                     'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . " ❌ ยกเลิกการเดิมพันทั้งหมด ❌"
@@ -272,7 +305,7 @@ foreach ($events['events'] as $event) {
 
 
                 // echo $bet_string;
-                if (!$bet_text) {
+                if (!$bet_string) {
 
                     $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
                 } else if (!is_numeric($bet_value)) {
