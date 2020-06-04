@@ -58,10 +58,11 @@ function linedisplayname($groupID, $userID)
 
 // }
 
-function checkbetstring($text)
+function checkbetstring($text,$code)
 {
 
     $text = preg_replace('/[0-9]+/', '', $text);
+    $code = preg_replace('/[0-9]+/', '', $code);
     $bet_string = preg_replace("/[^a-zก-๙]/", "", $text);
 
     // return $bet_string;
@@ -73,7 +74,7 @@ function checkbetstring($text)
         if ($bet_string == "ส") {
 
             $bet_string = "เสือ";
-            $bet_code = 100;
+            $code = 100;
         } else if ($bet_string == "ม") {
 
             $bet_string = "มังกร";
@@ -129,7 +130,7 @@ function checkbetstring($text)
             $bet_string = false;
         }
 
-        return $bet_string&$bet_code;
+        return $bet_string . $code;
     }
 }
 

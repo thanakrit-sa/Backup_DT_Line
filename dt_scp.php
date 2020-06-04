@@ -75,7 +75,7 @@ foreach ($events['events'] as $event) {
 
             $bet_type = "single";
 
-            $bet_string = checkbetstring($text);
+            $bet_string = checkbetstring($text,$code);
             $bet_value = checkbetvalue($text);
 
             if ($bet_string == "ข้อมูล") {
@@ -222,7 +222,7 @@ foreach ($events['events'] as $event) {
                         "user_displayname" => $user_displayname,
                         "bet_text" => $bet_string,
                         "value" => $bet_value,
-                        "bet_code" => $bet_code
+                        "bet_code" => $code
                     );
 
                     // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
@@ -271,7 +271,7 @@ foreach ($events['events'] as $event) {
             foreach ($arrKeywords as $element) {
 
                 $i++;
-                $bet_string = checkbetstring($element);
+                $bet_string = checkbetstring($element,$code);
                 $bet_value = checkbetvalue($element);
 
                 // echo $bet_string;
