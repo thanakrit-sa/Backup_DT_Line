@@ -136,12 +136,12 @@ foreach ($events['events'] as $event) {
                 $resultData = json_decode($result, true);
 
                 foreach($resultData['msg'] as $data) {
-                    $id = $data['id'];
+                    $id[] = $data['id'];
                 };
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $id
+                    'text' => $id[0]
                 ];
 
             } else if ($bet_string == "ยกเลิก") {
