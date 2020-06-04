@@ -139,15 +139,19 @@ foreach ($events['events'] as $event) {
                 foreach ($resultData['msg'] as $data) {
                     $i++;
                     $id[] = $data['id'];
+                    $messages = [
+                        'type' => 'text',
+                        'text' => $i
+                    ];
                 };
 
                 // foreach (count($resultData['msg'])) {
 
                 // }
-                $messages = [
-                    'type' => 'text',
-                    'text' => $data['id']
-                ];
+                // $messages = [
+                //     'type' => 'text',
+                //     'text' => $data['id']
+                // ];
             } else if ($bet_string == "ยกเลิก") {
                 $data = array(
                     "user_lineid" => $userID
