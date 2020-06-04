@@ -143,15 +143,11 @@ foreach ($events['events'] as $event) {
                 foreach ($resultData['data'] as $element) {
 
                     $i++;
-                    
 
 
 
-                    $element_reponse = '# ' . $i;
 
-
-
-                    $reponse_bet = $reponse_bet . "\n" . $element_reponse;
+                    $reponse_bet = $reponse_bet . "\n" . $i;
                 }
 
 
