@@ -135,18 +135,17 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 $resultData = json_decode($result, true);
                 $i = 0;
-                $num = 0;
                 $ans = "";
                 foreach ($resultData['msg'] as $data) {
                     $name[] = $data['bet_text'];
                     $value[] = $data['value'];
                 };
-                for ($i; $i <= sizeof($resultData['msg']); $i++ , $num++) {
-                    $ans = $ans . "#" . $num . " แทง => " . $name[$i] . " ราคา " . $value[$i] . "\n";
+                for ($i; $i <= sizeof($resultData['msg']); $i++) {
+                    $ans = $ans . "#" . $i . " แทง => " . $name[$i] . " ราคา " . $value[$i] . "\n";
                 };
                 $messages = [
                     'type' => 'text',
-                    'text' => " ชื่อผู้ใช้งาน : " . "\r\n" . $ans
+                    'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "📑 ประวัติการเดิมพัน" . "\r\n" . $ans
                 ];
 
 
