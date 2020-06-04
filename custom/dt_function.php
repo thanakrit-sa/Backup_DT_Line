@@ -73,6 +73,7 @@ function checkbetstring($text)
         if ($bet_string == "ส") {
 
             $bet_string = "เสือ";
+            $bet_code = 100;
         } else if ($bet_string == "ม") {
 
             $bet_string = "มังกร";
@@ -128,7 +129,7 @@ function checkbetstring($text)
             $bet_string = false;
         }
 
-        return $bet_string;
+        return $bet_string&$bet_code;
     }
 }
 
