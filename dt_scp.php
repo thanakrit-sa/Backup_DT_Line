@@ -144,7 +144,7 @@ foreach ($events['events'] as $event) {
                     $value[] = $data['value'];
                 };
                 for ($i; $i <= sizeof($resultData['msg']) - 1; $i++) {
-                    $ans = $ans . "#" . $num++ . " แทง => " . $name[$i] . " จำนวน " . $value[$i] . "\n";
+                    $ans = $ans . "#" . $num++ . " แทง => " . $name[$i] . " จำนวน " . $value[$i] . "บาท" . "\n";
                 };
                 $messages = [
                     'type' => 'text',
