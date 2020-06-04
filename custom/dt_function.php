@@ -130,7 +130,7 @@ function checkbetstring($text,$code)
             $bet_string = false;
         }
 
-        return $bet_string . $code;
+        return $bet_string .$code;
     }
 }
 
