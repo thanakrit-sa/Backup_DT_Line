@@ -214,49 +214,43 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    $_POST['user_id'] = $user_id;
-                    $_POST['user_lineid'] = $userID;
-                    $_POST['user_displayname'] = "Spie";
-                    $_POST['bet_text'] = "test";
-                    $_POST['value'] = "50.00";
-                    $_POST['bet_code'] = "null";
+                    // $_POST['user_id'] = $user_id;
+                    // $_POST['user_lineid'] = $userID;
+                    // $_POST['user_displayname'] = "Spie";
+                    // $_POST['bet_text'] = "test";
+                    // $_POST['value'] = "50.00";
+                    // $_POST['bet_code'] = "null";
 
-                    $data = array(
-                        "user_id" => $_POST['user_id'],
-                        "user_lineid" => $_POST['user_lineid'],
-                        "user_displayname" => $_POST['user_displayname'],
-                        "bet_text" => $_POST['bet_text'],
-                        "value" => $_POST['value'],
-                        "bet_code" => $_POST['bet_code']
-                    );
+                    // $data = array(
+                    //     "user_id" => $_POST['user_id'],
+                    //     "user_lineid" => $_POST['user_lineid'],
+                    //     "user_displayname" => $_POST['user_displayname'],
+                    //     "bet_text" => $_POST['bet_text'],
+                    //     "value" => $_POST['value'],
+                    //     "bet_code" => $_POST['bet_code']
+                    // );
 
-                    $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
+                    // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
-                    $postData = "";
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                    $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
 
-                    foreach ($data as $key => $val) {
-                        $postData .= $key . "=" . $val . "&";
-                    }
+                    $ch = curl_init(); // เริ่มต้นใช้งาน cURL
 
-                    $postData = rtrim($postData, "&");
-                    
-                    // $string = json_encode($data);
-                    
-                    // Get cURL resource
-                    $curl = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
+                    curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
+                    curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
 
-                    curl_setopt($curl, CURLOPT_URL, $url);
-                    curl_setopt($curl, CURLOPT_POST, 1);
-                    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-                    $resp = curl_exec($curl);
-                    curl_close($curl);
+                    $response = curl_exec($ch); // ประมวลผล cURL
+                    curl_close($ch); // ปิดการใช้งาน cURL
 
-                    // Send t
+                    echo $response; // แสดงผลการทำงาน
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $postData . $resp
+                        'text' => $request . $response
                     ];
                 }
             }
