@@ -214,26 +214,32 @@ foreach ($events['events'] as $event) {
                     $data = $resultData['data'];
                     $user_id = $data['id'];
 
-                    // $_POST['user_id'] = $user_id;
-                    // $_POST['user_lineid'] = $userID;
-                    // $_POST['user_displayname'] = "Spie";
-                    // $_POST['bet_text'] = "test";
-                    // $_POST['value'] = "50.00";
-                    // $_POST['bet_code'] = "null";
+                  
 
-                    // $data = array(
-                    //     "user_id" => $_POST['user_id'],
-                    //     "user_lineid" => $_POST['user_lineid'],
-                    //     "user_displayname" => $_POST['user_displayname'],
-                    //     "bet_text" => $_POST['bet_text'],
-                    //     "value" => $_POST['value'],
-                    //     "bet_code" => $_POST['bet_code']
-                    // );
+                    $data = array(
+                        "user_id" => "9",
+                        "user_lineid" => "pattha123456",
+                        "user_displayname" => "tarn",
+                        "bet_text" => "test",
+                        "value" => "50.00",
+                        "bet_code" => ""
+                    );
 
-                    // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
-                        $id - 9;
+                    $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
+
+                    $request = "";
+
+                    foreach ($data as $key => $val) {
+                        $request .= $key . "=" . $val . "&";
+                    }
+
+                    $request = rtrim($request, "&");
+                    
+                    // $string = json_encode($data);
+                    
+                    // Get cURL resource
                     $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-                    $request = 'user_id=$id&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
+                    // $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
 
                     $ch = curl_init(); // เริ่มต้นใช้งาน cURL
 
@@ -248,9 +254,11 @@ foreach ($events['events'] as $event) {
 
                     echo $response; // แสดงผลการทำงาน
 
+                    // Send t
+
                     $messages = [
                         'type' => 'text',
-                        'text' => $request . $response
+                        'text' => $request . $resp
                     ];
                 }
             }
