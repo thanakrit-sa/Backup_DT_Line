@@ -137,7 +137,7 @@ foreach ($events['events'] as $event) {
                 $i = 0;
                 $ans = "";
                 foreach ($resultData['msg'] as $data) {
-                    $bet_text[] = $data['bet_text'];
+                    $bet_text[] = $data['id'];
                     // $bet_value[] = $data['value'];
                 };
                 for ($i; $i <= sizeof($resultData['msg']); $i++) {
