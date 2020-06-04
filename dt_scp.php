@@ -289,6 +289,7 @@ foreach ($events['events'] as $event) {
                     $resultData = json_decode($result, true);
                     $data = $resultData['data'];
                     $user_id = $data['id'];
+                    $credit = $data['credit'];
 
                     $data = array(
                         "user_id" => $user_id,
@@ -332,7 +333,7 @@ foreach ($events['events'] as $event) {
 
             $messages = [
                 'type' => 'text',
-                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : "
+                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : " . $credit
             ];
         }
     }
