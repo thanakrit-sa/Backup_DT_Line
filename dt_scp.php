@@ -155,7 +155,7 @@ foreach ($events['events'] as $event) {
                 echo $response;
                 $messages = [
                     'type' => 'text',
-                    'text' => $request . $response
+                    'text' => "ชื่ผู้ใช้งาน : " . $user_displayname . "\r\n" . "❌ ยกเลิกการเดิมพันทั้งหมด ❌"
                 ];
             } else if ($bet_string == "การเล่น") {
                 $messages = [
