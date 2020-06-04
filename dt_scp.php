@@ -127,7 +127,7 @@ foreach ($events['events'] as $event) {
                     ];
                 }
             } else if ($bet_string == "ประวัติ") {
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet/logbet_lineid/' . $userID);
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_lineid/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
