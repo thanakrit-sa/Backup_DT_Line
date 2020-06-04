@@ -240,7 +240,7 @@ foreach ($events['events'] as $event) {
 
                     $postData = rtrim($postData, "&");
                     
-                    $string = json_encode($data);
+                    // $string = json_encode($data);
                     
                     // Get cURL resource
                     $curl = curl_init();
@@ -248,7 +248,7 @@ foreach ($events['events'] as $event) {
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl, CURLOPT_POST, 1);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $string);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
                     $resp = curl_exec($curl);
                     curl_close($curl);
 
@@ -256,7 +256,7 @@ foreach ($events['events'] as $event) {
 
                     $messages = [
                         'type' => 'text',
-                        'text' => $string . $resp
+                        'text' => $postData . $resp
                     ];
                 }
             }
