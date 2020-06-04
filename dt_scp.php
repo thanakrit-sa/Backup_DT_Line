@@ -141,7 +141,7 @@ foreach ($events['events'] as $event) {
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $id
+                    'text' => $id[0]
                 ];
 
             } else if ($bet_string == "ยกเลิก") {
