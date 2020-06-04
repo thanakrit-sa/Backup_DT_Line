@@ -134,27 +134,16 @@ foreach ($events['events'] as $event) {
                 $result = curl_exec($ch);
                 curl_close($ch);
                 $resultData = json_decode($result, true);
-                
-
-                $reponse_bet = '';
-                $bet_type = "multiple";
-                
                 $i = 0;
-                foreach ($resultData['data'] as $element) {
-
-                    $i++;
-
-
-
-
-                    $reponse_bet = $reponse_bet . "\n" . $i;
+                for ($i; $i <= sizeof($resultData['msg']);$i++) {
+                    $messages = [
+                        'type' => 'text',
+                        'text' => " ชื่อผู้ใช้งาน : " . $i
+                    ];
                 }
 
 
-                $messages = [
-                    'type' => 'text',
-                    'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet
-                ];
+                
 
 
                 // $messages = [
