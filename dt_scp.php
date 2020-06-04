@@ -138,12 +138,14 @@ foreach ($events['events'] as $event) {
 
                 foreach ($resultData['msg'] as $data) {
                     $i++;
-                    $id = $data;
-                    $messages = [
-                        'type' => 'text',
-                        'text' => $id
-                    ];
+                    $id[0] = $data['id'];
+                    $element_reponse = '# ' . $i . $id[0];
                 };
+
+                $messages = [
+                    'type' => 'text',
+                    'text' => " ชื่อผู้ใช้งาน : " . $element_reponse
+                ];
 
                 // $messages = [
                 //     'type' => 'text',
