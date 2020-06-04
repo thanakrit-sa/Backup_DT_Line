@@ -147,7 +147,7 @@ foreach ($events['events'] as $event) {
 
                 $messages = [
                     'type' => 'text',
-                    'text' => $result['msg']
+                    'text' => $resultData
                 ];
 
                 // foreach (count($resultData['msg'])) {
