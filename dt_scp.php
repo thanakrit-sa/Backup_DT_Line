@@ -224,7 +224,7 @@ foreach ($events['events'] as $event) {
                         "user_displayname" => $user_displayname,
                         "bet_text" => $bet_string,
                         "value" => $bet_value,
-                        "bet_code" => $code
+                        "bet_code" => $code[1]
                     );
 
                     // $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
