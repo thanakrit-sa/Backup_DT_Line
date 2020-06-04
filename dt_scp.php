@@ -94,7 +94,7 @@ foreach ($events['events'] as $event) {
                     'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
                 ];
             } else if ($bet_string == "คงเหลือ") {
-                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user/profile/' . $userID);
+                $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
