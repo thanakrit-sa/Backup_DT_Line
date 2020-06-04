@@ -138,10 +138,10 @@ foreach ($events['events'] as $event) {
 
                 foreach ($resultData['msg'] as $data) {
                     $i++;
-                    $id[] = $data['id'];
+                    $id = $data;
                     $messages = [
                         'type' => 'text',
-                        'text' => $data
+                        'text' => $id
                     ];
                 };
 
