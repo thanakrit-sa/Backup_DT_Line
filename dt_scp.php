@@ -229,7 +229,7 @@ foreach ($events['events'] as $event) {
                         "value" => $_POST['value'],
                         "bet_code" => $_POST['bet_code']
                     );
-                    // $string = http_build_query($data);
+                    $string = json_encode($data);
 
                     $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
@@ -249,15 +249,11 @@ foreach ($events['events'] as $event) {
                     curl_setopt($curl, CURLOPT_URL, $url);
                     curl_setopt($curl, CURLOPT_POST, 1);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-
-                    // Send the request & save response to $resp
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $string);
                     $resp = curl_exec($curl);
-
-                    print_r($resp);
-
-                    // Close request to clear up some resources
                     curl_close($curl);
+
+                    // Send t
 
                     $messages = [
                         'type' => 'text',
