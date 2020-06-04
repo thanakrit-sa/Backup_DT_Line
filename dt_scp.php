@@ -238,24 +238,21 @@ foreach ($events['events'] as $event) {
 
                     $request = rtrim($request, "&");
                     
-                    // $string = json_encode($data);
-                    
-                    // Get cURL resource
-                    // $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-                    // // $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
+                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                    // $request = 'user_id=9&user_lineid=pattha123456&user_displayname=tarn&bet_text=test&value=50.00&bet_code=';
 
-                    // $ch = curl_init(); // เริ่มต้นใช้งาน cURL
+                    $ch = curl_init(); // เริ่มต้นใช้งาน cURL
 
-                    // curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
-                    // curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
-                    // curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
-                    // curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
-                    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
+                    curl_setopt($ch, CURLOPT_URL, $url); // กำหนดค่า URL
+                    curl_setopt($ch, CURLOPT_POST, 1); // กำหนดรูปแบบการส่งข้อมูลเป็นแบบ $_POST
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request); // กำหนดค่า HTTP Request
+                    curl_setopt($ch, CURLOPT_HEADER, 0); // กำให้ cURL ไม่มีการตั้งค่า Header
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // กำหนดให้ cURL คืนค่าผลลัพท์
 
-                    // $response = curl_exec($ch); // ประมวลผล cURL
-                    // curl_close($ch); // ปิดการใช้งาน cURL
+                    $response = curl_exec($ch); // ประมวลผล cURL
+                    curl_close($ch); // ปิดการใช้งาน cURL
 
-                    // echo $response; // แสดงผลการทำงาน
+                    echo $response; // แสดงผลการทำงาน
 
                     // Send t
 
