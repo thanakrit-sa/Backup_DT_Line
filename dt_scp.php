@@ -216,7 +216,7 @@ foreach ($events['events'] as $event) {
 
                     $_POST['user_id'] = $user_id;
                     $_POST['user_lineid'] = $userID;
-                    $_POST['user_displayname'] = $user_displayname;
+                    $_POST['user_displayname'] = "Spie";
                     $_POST['bet_text'] = "test";
                     $_POST['value'] = "50.00";
                     $_POST['bet_code'] = "null";
@@ -239,8 +239,8 @@ foreach ($events['events'] as $event) {
                     }
 
                     $postData = rtrim($postData, "&");
-                    // $postData = json_decode($data,true);
-                    $string = json_encode($postData);
+                    
+                    $string = json_encode($data);
                     
                     // Get cURL resource
                     $curl = curl_init();
