@@ -139,11 +139,16 @@ foreach ($events['events'] as $event) {
                 foreach ($resultData['msg'] as $data) {
                     $i++;
                     $id[] = $data['id'];
-                    $messages = [
-                        'type' => 'text',
-                        'text' => $i
-                    ];
+                    // $messages = [
+                    //     'type' => 'text',
+                    //     'text' => $i
+                    // ];
                 };
+
+                $messages = [
+                    'type' => 'text',
+                    'text' => $result['msg']
+                ];
 
                 // foreach (count($resultData['msg'])) {
 
