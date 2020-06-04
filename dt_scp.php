@@ -229,7 +229,6 @@ foreach ($events['events'] as $event) {
                         "value" => $_POST['value'],
                         "bet_code" => $_POST['bet_code']
                     );
-                    $string = json_encode($data);
 
                     $url = "http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create";
 
@@ -241,7 +240,7 @@ foreach ($events['events'] as $event) {
 
                     $postData = rtrim($postData, "&");
                     // $postData = json_decode($data,true);
-
+                    $string = json_encode($postData);
                     
                     // Get cURL resource
                     $curl = curl_init();
