@@ -136,8 +136,11 @@ foreach ($events['events'] as $event) {
                 $resultData = json_decode($result, true);
                 $i = 0;
                 $ans = "";
+                foreach ($resultData['msg'] as $data) {
+                    $id[] = $data['id'];
+                };
                 for ($i; $i <= sizeof($resultData['msg']); $i++) {
-                    $ans = $ans . $i;
+                    $ans = $ans . $id[0] . $i;
                 };
                 $messages = [
                     'type' => 'text',
