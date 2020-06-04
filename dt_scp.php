@@ -135,13 +135,14 @@ foreach ($events['events'] as $event) {
                 curl_close($ch);
                 $resultData = json_decode($result, true);
                 $i = 0;
+                $num = 1;
                 $ans = "";
                 foreach ($resultData['msg'] as $data) {
                     $name[] = $data['bet_text'];
                     $value[] = $data['value'];
                 };
                 for ($i; $i <= sizeof($resultData['msg'])-1; $i++) {
-                    $ans = $ans . "#" . $i . " แทง => " . $name[$i] . " จำนวน " . $value[$i] . "\n";
+                    $ans = $ans . "#" . $num++ . " แทง => " . $name[$i] . " จำนวน " . $value[$i] . "\n";
                 };
                 $messages = [
                     'type' => 'text',
