@@ -134,12 +134,14 @@ foreach ($events['events'] as $event) {
                 $result = curl_exec($ch);
                 curl_close($ch);
                 $resultData = json_decode($result, true);
+                $i = 0;
 
                 foreach ($resultData['msg'] as $data) {
+                    $i++;
                     $id = $data['id'];
                     $messages = [
                         'type' => 'text',
-                        'text' => $id
+                        'text' => $i . $id
                     ];
                 };
             } else if ($bet_string == "ยกเลิก") {
