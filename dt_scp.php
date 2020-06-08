@@ -29,9 +29,6 @@
 
 // echo $response;
 
-
-
-
 include('./config.php');
 require_once('./custom/dt_function.php');
 
