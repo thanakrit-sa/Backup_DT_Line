@@ -290,7 +290,7 @@ foreach ($events['events'] as $event) {
 
             $messages = [
               'type' => 'text',
-              'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
+              'text' => "UserID : " . $userID . "\r\n" . ": " . $groupID
             ];
           } else if ($bet_string == "คงเหลือ") {
             $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
