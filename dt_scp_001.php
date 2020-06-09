@@ -528,13 +528,13 @@ foreach ($events['events'] as $event) {
                       } else {
                         $messages = [
                           'type' => 'text',
-                          'text' => $user_displayname . " : " . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . $status
+                          'text' => $user_displayname . " : " . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท"
                         ];
                       }
                     } else {
                       $messages = [
                         'type' => 'text',
-                        'text' => $user_displayname . " : " . "\r\n" . " ถูกระงับการใช้งาน โปรดติดต่อทีมงาน " . $data_min . " สูงสุด " . $data_max
+                        'text' => $user_displayname . " : " . "\r\n" . " ถูกระงับการใช้งาน โปรดติดต่อทีมงาน "
                       ];
                     }
                   } else {
