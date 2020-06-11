@@ -79,7 +79,7 @@ foreach ($events['events'] as $event) {
 
             $bet_type = "single";
 
-            $bet_string = checkbetstring($text, $code);
+            $bet_string = checkbetstring($text, $code,$part);
             $bet_value = checkbetvalue($text);
             $code = explode("/", $bet_string);
             $bet_text = $code[0];
@@ -316,7 +316,7 @@ foreach ($events['events'] as $event) {
             foreach ($arrKeywords as $element) {
 
                 $i++;
-                $bet_string = checkbetstring($element, $code);
+                $bet_string = checkbetstring($element, $code, $part);
                 $bet_value = checkbetvalue($element);
                 $code = explode("/", $bet_string);
                 $bet_text = $code[0];
