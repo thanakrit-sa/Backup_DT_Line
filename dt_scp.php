@@ -278,7 +278,7 @@ foreach ($events['events'] as $event) {
                     if ($res['part'] < 50) {
                         $messages = [
                             'type' => 'text',
-                            'text' => $res['part'] . "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
+                            'text' =>  "ชื่อผู้ใช้งาน : " . $res['part'] . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
                         ];
                     } else {
                         if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
