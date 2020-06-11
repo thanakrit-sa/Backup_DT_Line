@@ -79,7 +79,7 @@ foreach ($events['events'] as $event) {
 
             $bet_type = "single";
 
-            $bet_string = checkbetstring($text, $code,$part);
+            $bet_string = checkbetstring($text, $code, $part);
             $bet_value = checkbetvalue($text);
             $code = explode("/", $bet_string);
             $bet_text = $code[0];
@@ -87,17 +87,17 @@ foreach ($events['events'] as $event) {
 
             if ($bet_string == "ข้อมูล") {
                 $ch = curl_init();
-                  curl_setopt($ch, CURLOPT_HEADER, 0);
-                  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                  curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
-                  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
-                  $data = curl_exec($ch);
-                  curl_close($ch);
-                  $res = json_decode($data,true);
-                  $messages = [
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                $data = curl_exec($ch);
+                curl_close($ch);
+                $res = json_decode($data, true);
+                $messages = [
                     'type' => 'text',
                     'text' => $res['part']
-                  ];
+                ];
             } else if ($bet_string == "คงเหลือ") {
                 $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -267,52 +267,25 @@ foreach ($events['events'] as $event) {
                         ]
                     ];
                 } else {
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-                    $result = curl_exec($ch);
-                    curl_close($ch);
-                    $resultData = json_decode($result, true);
-                    $data = $resultData['data'];
-                    $user_id = $data['id'];
-
-                    $data = array(
-                        "user_id" => $user_id,
-                        "user_lineid" => $userID,
-                        "user_displayname" => $user_displayname,
-                        "bet_text" => $bet_text,
-                        "value" => $bet_value,
-                        "bet_code" => $bet_code
-                    );
-
-                    $request = "";
-
-                    foreach ($data as $key => $val) {
-                        $request .= $key . "=" . $val . "&";
-                    }
-
-                    $request = rtrim($request, "&");
-
-                    $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
-
                     $ch = curl_init();
-
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
                     curl_setopt($ch, CURLOPT_HEADER, 0);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-                    $response = curl_exec($ch);
+                    curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                    $data = curl_exec($ch);
                     curl_close($ch);
-
-                    echo $response;
-
-                    $messages = [
-                        'type' => 'text',
-                        'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
-                    ];
+                    $res = json_decode($data, true);
+                    if ($res['part'] < 50) {
+                        $messages = [
+                            'type' => 'text',
+                            'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
+                        ];
+                    } else {
+                        $messages = [
+                            'type' => 'text',
+                            'text' => "ชื่อผู้ใช้งาน : "
+                        ];
+                    }
                 }
             }
         } else if ($split_slash_count > 0) {
@@ -403,20 +376,19 @@ foreach ($events['events'] as $event) {
 
 
 
-    $url = 'https://api.line.me/v2/bot/message/reply';
-    $data = [
-        'replyToken' => $replyToken,
-        'messages' => [$messages],
-    ];
-    $post = json_encode($data);
-    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+$url = 'https://api.line.me/v2/bot/message/reply';
+$data = [
+    'replyToken' => $replyToken,
+    'messages' => [$messages],
+];
+$post = json_encode($data);
+$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    $result = curl_exec($ch);
-    curl_close($ch);
-
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+$result = curl_exec($ch);
+curl_close($ch);
