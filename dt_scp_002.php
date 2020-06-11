@@ -250,7 +250,7 @@ foreach ($events['events'] as $event) {
 
           $bet_type = "single";
 
-          $bet_string = checkbetstring(strtolower($text), $code, $part);
+          $bet_string = checkbetstring(strtolower($text), $code);
           $bet_value = checkbetvalue($text);
           $code = explode("/", $bet_string);
           $bet_text = $code[0];
@@ -467,82 +467,100 @@ foreach ($events['events'] as $event) {
                     'text' => "ขณะนี้ยังไม่เปิดรอบเดิมพัน กรุณารอเปิดรอบเดิมพัน"
                   ];
                 } else {
-                  if ($bet_value >= $data_min && $bet_value <= $data_max) {
-                    $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-                    $result = curl_exec($ch);
-                    curl_close($ch);
-                    $resultData = json_decode($result, true);
-                    $data = $resultData['data'];
-                    $status = $data['status'];
-                    if ($status == "active") {
-                      $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
-                      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
-                      $result = curl_exec($ch);
-                      curl_close($ch);
-                      $resultData = json_decode($result, true);
-                      $data = $resultData['data'];
-                      $user_id = $data['id'];
+                  $ch = curl_init();
+                  curl_setopt($ch, CURLOPT_HEADER, 0);
+                  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                  curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                  $data = curl_exec($ch);
+                  curl_close($ch);
+                  $messages = [
+                    'type' => 'text',
+                    'text' => $data
+                  ];
+                  // if ($part < 50) {
+                  //   if ($bet_value >= $data_min && $bet_value <= $data_max) {
+                  //     $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
+                  //     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                  //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                  //     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                  //     $result = curl_exec($ch);
+                  //     curl_close($ch);
+                  //     $resultData = json_decode($result, true);
+                  //     $data = $resultData['data'];
+                  //     $status = $data['status'];
+                  //     if ($status == "active") {
+                  //       $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
+                  //       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                  //       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                  //       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json',));
+                  //       $result = curl_exec($ch);
+                  //       curl_close($ch);
+                  //       $resultData = json_decode($result, true);
+                  //       $data = $resultData['data'];
+                  //       $user_id = $data['id'];
 
-                      $data = array(
-                        "user_id" => $user_id,
-                        "user_lineid" => $userID,
-                        "user_displayname" => $user_displayname,
-                        "bet_text" => $bet_text,
-                        "value" => $bet_value,
-                        "bet_code" => $bet_code
-                      );
+                  //       $data = array(
+                  //         "user_id" => $user_id,
+                  //         "user_lineid" => $userID,
+                  //         "user_displayname" => $user_displayname,
+                  //         "bet_text" => $bet_text,
+                  //         "value" => $bet_value,
+                  //         "bet_code" => $bet_code
+                  //       );
 
-                      $request = "";
+                  //       $request = "";
 
-                      foreach ($data as $key => $val) {
-                        $request .= $key . "=" . $val . "&";
-                      }
+                  //       foreach ($data as $key => $val) {
+                  //         $request .= $key . "=" . $val . "&";
+                  //       }
 
-                      $request = rtrim($request, "&");
+                  //       $request = rtrim($request, "&");
 
-                      $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
+                  //       $url = 'http://e-sport.in.th/ssdev/dt/dashboard/api/bet_test/logbet_create';
 
-                      $ch = curl_init();
+                  //       $ch = curl_init();
 
-                      curl_setopt($ch, CURLOPT_URL, $url);
-                      curl_setopt($ch, CURLOPT_POST, 1);
-                      curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-                      curl_setopt($ch, CURLOPT_HEADER, 0);
-                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                  //       curl_setopt($ch, CURLOPT_URL, $url);
+                  //       curl_setopt($ch, CURLOPT_POST, 1);
+                  //       curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+                  //       curl_setopt($ch, CURLOPT_HEADER, 0);
+                  //       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-                      $response = curl_exec($ch);
-                      curl_close($ch);
-                      $response_data = json_decode($response, true);
-                      $response_code = $response_data['code'];
+                  //       $response = curl_exec($ch);
+                  //       curl_close($ch);
+                  //       $response_data = json_decode($response, true);
+                  //       $response_code = $response_data['code'];
 
-                      if ($response_code == "509") {
-                        $messages = [
-                          'type' => 'text',
-                          'text' => $user_displayname . " : " . "\r\n" . "เดิมพันไม่สำเร็จยอดคงเหลือไม่เพียงพอ "
-                        ];
-                      } else {
-                        $messages = [
-                          'type' => 'text',
-                          'text' => $user_displayname . " : " . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท"
-                        ];
-                      }
-                    } else {
-                      $messages = [
-                        'type' => 'text',
-                        'text' => $user_displayname . " : " . "\r\n" . " ถูกระงับการใช้งาน โปรดติดต่อทีมงาน "
-                      ];
-                    }
-                  } else {
-                    $messages = [
-                      'type' => 'text',
-                      'text' => $user_displayname . " : " . "\r\n" . " เดิมพันไม่สำเร็จ ยอดเดิมพันไม่ถูกต้อง ขั่นต่ำ " . $data_min . " สูงสุด " . $data_max
-                    ];
-                  }
+                  //       if ($response_code == "509") {
+                  //         $messages = [
+                  //           'type' => 'text',
+                  //           'text' => $user_displayname . " : " . "\r\n" . "เดิมพันไม่สำเร็จยอดคงเหลือไม่เพียงพอ "
+                  //         ];
+                  //       } else {
+                  //         $messages = [
+                  //           'type' => 'text',
+                  //           'text' => $user_displayname . " : " . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท"
+                  //         ];
+                  //       }
+                  //     } else {
+                  //       $messages = [
+                  //         'type' => 'text',
+                  //         'text' => $user_displayname . " : " . "\r\n" . " ถูกระงับการใช้งาน โปรดติดต่อทีมงาน "
+                  //       ];
+                  //     }
+                  //   } else {
+                  //     $messages = [
+                  //       'type' => 'text',
+                  //       'text' => $user_displayname . " : " . "\r\n" . " เดิมพันไม่สำเร็จ ยอดเดิมพันไม่ถูกต้อง ขั่นต่ำ " . $data_min . " สูงสุด " . $data_max
+                  //     ];
+                  //   }
+                  // } else {
+                  //   $messages = [
+                  //     'type' => 'text',
+                  //     'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่ คี่ แดง ดำ ได้"
+                  //   ];
+                  // }
                 }
               } else {
                 $messages = [
@@ -595,7 +613,7 @@ foreach ($events['events'] as $event) {
               foreach ($arrKeywords as $element) {
 
                 $i++;
-                $bet_string = checkbetstring($element, $code, $part);
+                $bet_string = checkbetstring($element, $code);
                 $bet_value = checkbetvalue($element);
                 $code = explode("/", $bet_string);
                 $bet_text = $code[0];
