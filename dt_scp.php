@@ -332,6 +332,7 @@ foreach ($events['events'] as $event) {
                         
                             $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
                         }
+                        $reponse_bet = $reponse_bet . "\n" . $element_reponse;
                     } else {
                         if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
                             $messages = [
@@ -350,11 +351,12 @@ foreach ($events['events'] as $event) {
                             
                                 $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
                             }
+                            $reponse_bet = $reponse_bet . "\n" . $element_reponse;
                         }
                     }
 
 
-                $reponse_bet = $reponse_bet . "\n" . $element_reponse;
+                
             }
 
 
