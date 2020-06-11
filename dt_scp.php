@@ -281,7 +281,7 @@ foreach ($events['events'] as $event) {
                             'text' =>  "ชื่อผู้ใช้งาน : " . $res['part'] . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
                         ];
                     } else {
-                        if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
+                        if (strpos($text, "คี่") || strpos($text, "คู่") || strpos($text, "แดง") || strpos($text, "ดำ")) {
                             $messages = [
                                 'type' => 'text',
                                 'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
@@ -313,50 +313,47 @@ foreach ($events['events'] as $event) {
 
                 // echo $bet_string;
                 $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_HEADER, 0);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
-                    $data = curl_exec($ch);
-                    curl_close($ch);
-                    $res = json_decode($data, true);
-                    if ($res['part'] < 50) {
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                $data = curl_exec($ch);
+                curl_close($ch);
+                $res = json_decode($data, true);
+                if ($res['part'] < 50) {
+                    if (!$bet_string) {
+
+                        $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
+                    } else if (!is_numeric($bet_value)) {
+
+
+                        $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
+                    } else {
+
+                        $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
+                    }
+                    $reponse_bet = $reponse_bet . "\n" . $element_reponse;
+                } else {
+                    if (strpos($bet_text, "คี่") || strpos($bet_text, "คู่") || strpos($bet_text, "แดง") || strpos($bet_text, "ดำ")) {
+                        $messages = [
+                            'type' => 'text',
+                            'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
+                        ];
+                    } else {
                         if (!$bet_string) {
 
                             $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
                         } else if (!is_numeric($bet_value)) {
-                        
-                        
+
+
                             $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
                         } else {
-                        
+
                             $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
                         }
                         $reponse_bet = $reponse_bet . "\n" . $element_reponse;
-                    } else {
-                        if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
-                            $messages = [
-                                'type' => 'text',
-                                'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
-                            ];
-                        } else {
-                            if (!$bet_string) {
-
-                                $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
-                            } else if (!is_numeric($bet_value)) {
-                            
-                            
-                                $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
-                            } else {
-                            
-                                $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
-                            }
-                            $reponse_bet = $reponse_bet . "\n" . $element_reponse;
-                        }
                     }
-
-
-                
+                }
             }
 
 
