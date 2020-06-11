@@ -281,7 +281,7 @@ foreach ($events['events'] as $event) {
                             'text' =>  "ชื่อผู้ใช้งาน : " . $res['part'] . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
                         ];
                     } else {
-                        if (strpos($text, "คี่") || strpos($text, "คู่") || strpos($text, "แดง") || strpos($text, "ดำ")) {
+                        if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
                             $messages = [
                                 'type' => 'text',
                                 'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
@@ -301,86 +301,67 @@ foreach ($events['events'] as $event) {
             $bet_type = "multiple";
             $arrKeywords = explode("/", $text);
             $i = 0;
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
-            $data = curl_exec($ch);
-            curl_close($ch);
-            $res = json_decode($data, true);
-            if ($res['part'] < 50) {
-                foreach ($arrKeywords as $element) {
+            foreach ($arrKeywords as $element) {
 
-                    $i++;
-                    $bet_string = checkbetstring($element, $code, $part);
-                    $bet_value = checkbetvalue($element);
-                    $code = explode("/", $bet_string);
-                    $bet_text = $code[0];
-                    $bet_code = $code[1];
-                
-                
-                    // echo $bet_string;
-                    if (!$bet_string) {
-                
-                        $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
-                    } else if (!is_numeric($bet_value)) {
-                
-                
-                        $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
-                    } else {
-                        $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
-                    }
-                
-                
-                    $reponse_bet = $reponse_bet . "\n" . $element_reponse;
-                }
-                
-                
-                $messages = [
-                    'type' => 'text',
-                    'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : " . $credit
-                ];
-            } else {
-                if (strpos($text, "คี่") || strpos($text, "คู่") || strpos($text, "แดง") || strpos($text, "ดำ")) {
-                    $messages = [
-                        'type' => 'text',
-                        'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
-                    ];
-                } else {
-                    foreach ($arrKeywords as $element) {
+                $i++;
+                $bet_string = checkbetstring($element, $code, $part);
+                $bet_value = checkbetvalue($element);
+                $code = explode("/", $bet_string);
+                $bet_text = $code[0];
+                $bet_code = $code[1];
 
-                        $i++;
-                        $bet_string = checkbetstring($element, $code, $part);
-                        $bet_value = checkbetvalue($element);
-                        $code = explode("/", $bet_string);
-                        $bet_text = $code[0];
-                        $bet_code = $code[1];
-                    
-                    
-                        // echo $bet_string;
+
+                // echo $bet_string;
+                $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                    $data = curl_exec($ch);
+                    curl_close($ch);
+                    $res = json_decode($data, true);
+                    if ($res['part'] < 50) {
                         if (!$bet_string) {
-                    
+
                             $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
                         } else if (!is_numeric($bet_value)) {
-                    
-                    
+                        
+                        
                             $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
                         } else {
+                        
                             $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
                         }
-                    
-                    
-                        $reponse_bet = $reponse_bet . "\n" . $element_reponse;
+                    } else {
+                        if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
+                            $messages = [
+                                'type' => 'text',
+                                'text' => " รอบที่ 50 เป็นต้นไป ไม่สามารถแทง คู่  คี่ แดง ดำ ได้ "
+                            ];
+                        } else {
+                            if (!$bet_string) {
+
+                                $element_reponse = '# ' . $i . ' รูปแบบการเดิมพันของท่านไม่ถูกต้อง';
+                            } else if (!is_numeric($bet_value)) {
+                            
+                            
+                                $element_reponse = '# ' . $i . ' ยอดเงินเดิมพันไม่ถูกต้อง';
+                            } else {
+                            
+                                $element_reponse = '# ' . $i . ' แทง > ' . $bet_text . " จำนวน " . $bet_value;
+                            }
+                        }
                     }
-                    
-                    
-                    $messages = [
-                        'type' => 'text',
-                        'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : " . $credit
-                    ];
-                }
+
+
+                $reponse_bet = $reponse_bet . "\n" . $element_reponse;
             }
+
+
+            $messages = [
+                'type' => 'text',
+                'text' => " ชื่อผู้ใช้งาน : " . $user_displayname . " " . $reponse_bet . "\r\n" . "💰 ยอดเงินคงเหลือ : " . $credit
+            ];
         }
     }
 }
@@ -405,7 +386,3 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 $result = curl_exec($ch);
 curl_close($ch);
-
-
-
-
