@@ -93,7 +93,7 @@ foreach ($events['events'] as $event) {
                   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
                   $data = curl_exec($ch);
                   curl_close($ch);
-                  $res = json_decode($data);
+                  $res = json_decode($data,true);
                   $messages = [
                     'type' => 'text',
                     'text' => $res['part']
