@@ -595,7 +595,7 @@ foreach ($events['events'] as $event) {
               foreach ($arrKeywords as $element) {
 
                 $i++;
-                $bet_string = checkbetstring($element, $code,$part);
+                $bet_string = checkbetstring($element, $code, $part);
                 $bet_value = checkbetvalue($element);
                 $code = explode("/", $bet_string);
                 $bet_text = $code[0];
