@@ -95,7 +95,7 @@ foreach ($events['events'] as $event) {
                   curl_close($ch);
                   $messages = [
                     'type' => 'text',
-                    'text' => $data
+                    'text' => $data['part']
                   ];
             } else if ($bet_string == "คงเหลือ") {
                 $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
