@@ -86,10 +86,17 @@ foreach ($events['events'] as $event) {
             $bet_code = $code[1];
 
             if ($bet_string == "ข้อมูล") {
-                $messages = [
+                $ch = curl_init();
+                  curl_setopt($ch, CURLOPT_HEADER, 0);
+                  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                  curl_setopt($ch, CURLOPT_URL, "http://e-sport.in.th/ssdev/dt/dashboard/api/status/status_part");
+                  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+                  $data = curl_exec($ch);
+                  curl_close($ch);
+                  $messages = [
                     'type' => 'text',
-                    'text' => "UserID : " . $userID . "\r\n" . "GroupID : " . $groupID
-                ];
+                    'text' => $data
+                  ];
             } else if ($bet_string == "คงเหลือ") {
                 $ch = curl_init('http://e-sport.in.th/ssdev/dt/dashboard/api/user_test/profile/' . $userID);
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
