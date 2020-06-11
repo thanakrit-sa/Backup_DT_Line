@@ -281,10 +281,17 @@ foreach ($events['events'] as $event) {
                             'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
                         ];
                     } else {
-                        $messages = [
-                            'type' => 'text',
-                            'text' => "ชื่อผู้ใช้งาน : "
-                        ];
+                        if (strpos($text,"คี่") || strpos($text,"คู่") || strpos($text,"แดง") || strpos($text,"ดำ")) {
+                            $messages = [
+                                'type' => 'text',
+                                'text' => "ชื่อผู้ใช้งาน : " . $user_displayname . "\r\n" . "เดิมพัน : " . $bet_text . "\r\n" . "จำนวน : " . $bet_value . " บาท" . "\r\n" . "รหัสเดิมพัน : " . $bet_code
+                            ];
+                        } else {
+                            $messages = [
+                                'type' => 'text',
+                                'text' => "ชื่อผู้ใช้งาน : "
+                            ];
+                        }
                     }
                 }
             }
